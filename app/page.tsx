@@ -1,16 +1,13 @@
-import "./globals.css";
+import Image from "next/image";
+import Card from "@/components/card";
+import img from "../public/images/kenan.jpg"
+
 
 export default function Home() {
-  return (
-    <div>
-      <div className="bg-slate-50 border-2 border-solid border-slate-300 mt-4">
-        <h2>Image Processing</h2>
-        <div className="">CardLists</div>
-      </div>
-      <div className="bg-slate-50 border-2 border-solid border-slate-300  mt-4">
-        <h2>DevTools</h2>
-        <div className="">CardLists</div>
-      </div>
-    </div>
-  );
+  return <div className="cardBar">
+    <Card title="manga" content="kenan" image={img.src} />
+    <Card title="manga" content="kenan" image={img.src} />
+    <Card title="manga" content="kenan" image={img.src} />
+    <Card title="manga" content="kenan" image={img.src} />
+  </div>;
 }
