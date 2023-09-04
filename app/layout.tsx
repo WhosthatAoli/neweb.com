@@ -19,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex flex-col`}>
-        <Navbar />
-        <Banner />
+        <div className="bg-slate-600 text-slate-50">
+          <Navbar />
+          <Banner />
+        </div>
         {children}
       </body>
     </html>
