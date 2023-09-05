@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Card from "@/components/card";
 import img from "../public/images/kenan.jpg";
-import { websites } from "../constent";
+import { websites } from "../constant";
 
 export default function Home() {
   return (

@@ -20,7 +20,6 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
           <a href="#" className="">
             About
           </a>
-          1
           <a href="#" className="">
             Contact
           </a>
