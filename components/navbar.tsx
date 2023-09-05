@@ -10,7 +10,7 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
       <div className="flex flex-row justify-between font-bold">
         <div className="flex flex-row items-center gap-6">
           <img
-            src="../assets/logo.png"
+            src={logo.src}
             alt="logo"
             className="w-9 h-9 object-fill rounded-full"
           />
@@ -20,6 +20,7 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
           <a href="#" className="">
             About
           </a>
+          1
           <a href="#" className="">
             Contact
           </a>
