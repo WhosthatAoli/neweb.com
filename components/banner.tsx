@@ -1,5 +1,6 @@
 import * as React from "react";
 import "../app/globals.css";
+import { banners } from "../constant";
 
 interface BannerProps {}
 

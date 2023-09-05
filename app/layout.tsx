@@ -19,11 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex flex-col`}>
-        <div className="bg-slate-600 text-slate-50">
+        <div className="bg-gradient-to-b from-violet-500 to-fuchsia-500 text-slate-50">
           <Navbar />
           <Banner />
         </div>
         {children}
+        <footer>footer</footer>
       </body>
     </html>
   );
