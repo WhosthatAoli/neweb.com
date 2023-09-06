@@ -39,7 +39,7 @@ const websites = [
     name: "YifanTV",
     img: "",
     url: "https://www.yfsp.tv/",
-    feature: ["Online Streaming"],
+    feature: ["Online Streaming","DevTools"],
   },
   {
     name: "YifanTV",
@@ -61,4 +61,4 @@ const websites = [
   },
 ];
 
-export { banners, collections, websites };
+export { banners,features, websites };

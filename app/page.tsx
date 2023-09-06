@@ -1,32 +1,32 @@
 import Image from "next/image";
 import Card from "@/components/card";
 import img from "../public/images/kenan.jpg";
-import { websites } from "../constant";
+import { websites, features as allFeatures  } from "../constant";
 import Banner from "@/components/banner";
 
+
 export default function Home() {
+  
   return (
     <div>
       <Banner />
-      <div className="collection bg-slate-300 mt-4">
-        <div className="text-2xl pl-6">DevTools</div>
-        <div className="cardBar flex justify-between pl-4 pr-4">
-          <Card title="manga" content="kenan" image={img.src} />
-          <Card title="manga" content="kenan" image={img.src} />
-          <Card title="manga" content="kenan" image={img.src} />
-          <Card title="manga" content="kenan" image={img.src} />
+      {allFeatures.map(feature => (
+        <div key={feature} className="collection bg-slate-300 mt-4">
+          <div className="text-2xl pl-6">{feature}</div>
+          <div className="cardBar flex  pl-4 pr-4">
+            {websites.filter(site => site.feature.includes(feature)).map((filteredSite, index) => (
+              <Card
+                key={index}
+                title={filteredSite.name}
+                content={filteredSite.description}
+                image={filteredSite.img}
+                url={filteredSite.url}
+                features={filteredSite.feature}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-
-      <div className="collection bg-slate-300 mt-4">
-        <div className="text-2xl pl-6">Image Processing</div>
-        <div className="cardBar flex justify-between pl-4 pr-4">
-          <Card title="manga" content="kenan" image={img.src} />
-          <Card title="manga" content="kenan" image={img.src} />
-          <Card title="manga" content="kenan" image={img.src} />
-          <Card title="manga" content="kenan" image={img.src} />
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
