@@ -39,7 +39,7 @@ const websites = [
     name: "YifanTV",
     img: "",
     url: "https://www.yfsp.tv/",
-    feature: ["Online Streaming","DevTools"],
+    feature: ["Online Streaming", "DevTools"],
   },
   {
     name: "YifanTV",
@@ -61,4 +61,20 @@ const websites = [
   },
 ];
 
-export { banners,features, websites };
+const web3_features = ["Swap", "NFT"];
+const web3 = [
+  {
+    name: "UniSwap v3",
+    img: "",
+    url: "https://app.uniswap.org/#/swap",
+    feature: ["Swap"],
+  },
+  {
+    name: "Curve",
+    img: "",
+    url: "https://www.curve.fi/",
+    feature: ["Swap"],
+  },
+];
+
+export { banners, features, websites, web3 };
