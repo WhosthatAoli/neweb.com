@@ -19,7 +19,7 @@ const banners = [
   },
 ];
 
-const features = ["Image Processing", "DevTools", "Online Streaming"];
+const features = ["Image Processing", "DevTools", "Online Streaming", "Swap"];
 
 const websites = [
   {
@@ -71,8 +71,26 @@ const websites = [
     "feature": [
       "Online Streaming"
     ]
+  },
+  {
+    "name": "UniSwap v3",
+    "img": "/screenshots/UniSwap v3.png",
+    "url": "https://app.uniswap.org/#/swap",
+    "feature": [
+      "Swap"
+    ]
+  },
+  {
+    "name": "Curve",
+    "img": "/screenshots/Curve.png",
+    "url": "https://www.curve.fi/",
+    "feature": [
+      "Swap"
+    ]
   }
 ];
+
+
 
 const web3_features = ["Swap", "NFT"];
 const web3 = [
@@ -90,5 +108,4 @@ const web3 = [
   },
 ];
 
-
-module.exports =   { banners, features, websites, web3 };
+module.exports = { banners, features, websites, web3 };
