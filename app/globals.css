@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.overflow-indicator {
+  position: relative;
+  overflow-x: auto;
+}
+
+.overflow-indicator::before {
+  content: "<-";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  color: white;
+}
+
+.overflow-indicator::after {
+  content: "->";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  color: white;
+}
+
+.overflow-indicator::before {
+  left: 0;
+  border: 8px solid transparent;
+  border-right-color: white;
+}
+
+.overflow-indicator::after {
+  right: 0;
+  border: 8px solid transparent;
+  border-left-color: white;
+}
+
+.overflow-indicator:hover::before,
+.overflow-indicator:hover::after {
+  opacity: 1;
+}
