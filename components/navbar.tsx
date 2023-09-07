@@ -14,11 +14,11 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
             alt="logo"
             className="w-9 h-9 object-fill rounded-full"
           />
-          <a href="#" className="">
+          <a href="/" className="">
             Home
           </a>
-          <a href="#" className="">
-            About
+          <a href="/web3" className="">
+            Web3
           </a>
           <a href="#" className="">
             Contact

@@ -9,9 +9,9 @@ export default function Home() {
     <div>
       <Banner />
       {allFeatures.map((feature) => (
-        <div key={feature} className="collection bg-slate-300 mt-4">
-          <div className="text-2xl pl-6">{feature}</div>
-          <div className="cardBar flex overflow-auto gap-4 pl-4 pr-4">
+        <div key={feature} className="collection mt-4">
+          <div className="text-2xl font-bold mt-4 ml-4 mb-4">{feature}</div>
+          <div className="cardBar flex overflow-auto gap-4 pt-4 pb-4 ml-4 mr-4">
             {websites
               .filter((site) => site.feature.includes(feature))
               .map((filteredSite, index) => (

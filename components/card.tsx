@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({
   features,
 }) => {
   return (
-    <div className="rounded-lg w-80 min-w-fit">
+    <div className="rounded-lg w-80 min-w-fit shadow-lg hover:shadow-xl hover:-translate-y-2 duration-500">
       <a
         href={url}
         target="_blank"

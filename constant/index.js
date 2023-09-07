@@ -85,20 +85,43 @@ const websites = [
   },
 ];
 
-const web3_features = ["Swap", "NFT"];
+const web3_features = ["Swap", "NFT", "Web3 Dev", "Stats"];
 const web3 = [
   {
     name: "UniSwap v3",
     img: "",
     url: "https://app.uniswap.org/#/swap",
+    description: "This is a website",
     feature: ["Swap"],
   },
   {
     name: "Curve",
     img: "",
     url: "https://www.curve.fi/",
+    description: "This is a website",
     feature: ["Swap"],
+  },
+  {
+    name: "OpenSea",
+    img: "",
+    url: "https://opensea.io/",
+    description: "This is a website",
+    feature: ["NFT"],
+  },
+  {
+    name: "Third Web",
+    img: "",
+    url: "https://thirdweb.com/",
+    description: "This is a website",
+    feature: ["Web3 Dev"],
+  },
+  {
+    name: "Curve",
+    img: "",
+    url: "https://www.curve.fi/",
+    description: "This is a website",
+    feature: ["Stats"],
   },
 ];
 
-module.exports = { banners, features, websites, web3 };
+module.exports = { banners, features, websites, web3, web3_features };
