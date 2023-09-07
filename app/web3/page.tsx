@@ -6,8 +6,8 @@ export default function Home() {
     <div>
       {allFeatures.map((feature) => (
         <div key={feature} className="collection mt-4">
-          <div className="text-2xl pl-6">{feature}</div>
-          <div className="cardBar flex overflow-auto gap-4 pb-4 ml-4 mr-4">
+          <div className="text-2xl font-bold mt-4 ml-6 mb-4">{feature}</div>
+          <div className="cardBar flex overflow-auto gap-4 pt-4 pb-4 ml-6 mr-4">
             {web3
               .filter((site) => site.feature.includes(feature))
               .map((filteredSite, index) => (
