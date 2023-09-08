@@ -2,26 +2,23 @@ import * as React from "react";
 import "../app/globals.css";
 import { logo } from "../assets";
 
-interface IAppProps {}
+interface NavbarProps {}
 
-const App: React.FunctionComponent<IAppProps> = (props) => {
+const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
   return (
     <nav>
-      <div className="flex flex-row justify-between font-bold">
-        <div className="flex flex-row items-center gap-6">
+      <div className="flex flex-row justify-between font-bold mt-4">
+        <div className="flex flex-row items-center gap-6 pl-6">
           <img
             src={logo.src}
             alt="logo"
             className="w-9 h-9 object-fill rounded-full"
           />
-          <a href="#" className="">
+          <a href="/" className="text-xl">
             Home
           </a>
-          <a href="#" className="">
-            About
-          </a>
-          <a href="#" className="">
-            Contact
+          <a href="/web3" className="text-xl">
+            Web3
           </a>
         </div>
         <div className="flex flex-row items-center gap-4 pr-6">
@@ -37,4 +34,4 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
   );
 };
 
-export default App;
+export default Navbar;
