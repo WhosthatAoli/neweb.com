@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
 const { websites } = require('../../constant/index');
-const sharp = require('sharp');  // Make sure you've installed the sharp library
+const sharp = require('sharp');
 
 async function takeScreenshot(url, screenshotPath) {
   const browser = await chromium.launch();
@@ -11,7 +11,7 @@ async function takeScreenshot(url, screenshotPath) {
 
     try {
         await Promise.race([
-            page.goto(url, { waitUntil: 'networkidle' }),  // Waits for no network connections for at least 500ms.
+            page.goto(url, { waitUntil: 'networkidle' }),
             new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout after 5 seconds')), 5000))
         ]);
     } catch (error) {
@@ -20,7 +20,7 @@ async function takeScreenshot(url, screenshotPath) {
 
     const buffer = await page.screenshot();
     const optimizedImage = await sharp(buffer)
-        .png({ quality: 90 })  // You can adjust the quality to balance between size and clarity
+        .png({ quality: 90 })
         .toBuffer();
 
     fs.writeFileSync(screenshotPath, optimizedImage);
@@ -28,21 +28,21 @@ async function takeScreenshot(url, screenshotPath) {
 }
 
 async function updateScreenshots() {
-  console.log("start screenshot");
-  for (let site of websites) {
-    if (site.url) {
-      const screenshotPath = path.join(
-        __dirname,
-        "../../public/screenshots",
-        `${site.name}.png`
-      );
-      await takeScreenshot(site.url, screenshotPath);
-      site.img = `/screenshots/${site.name}.png`;
+    const fetchedUrls = new Set(); // This set will track which URLs we've already fetched
+
+    console.log("start screenshot");
+    for (let site of websites) {
+        if (site.url && !fetchedUrls.has(site.url)) { // Check if the URL has not been fetched before
+            const screenshotPath = path.join(__dirname, '../../public/screenshots', `${site.name}.png`);
+            await takeScreenshot(site.url, screenshotPath);
+            site.img = `/screenshots/${site.name}.png`;
+            
+            fetchedUrls.add(site.url); // Mark this URL as fetched
+        }
     }
 
     console.log("finish screenshot, start saving data: ");
     const fileContent = fs.readFileSync(path.join(__dirname, '../../constant/index.js'), 'utf-8');
-    console.log("load file content");
     const updatedWebsitesContent = `const websites = ${JSON.stringify(websites, null, 2)};`;
 
     const newFileContent = fileContent.replace(/const websites = [\s\S]*?;/, updatedWebsitesContent + '\n');
