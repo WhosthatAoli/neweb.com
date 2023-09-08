@@ -1,7 +1,7 @@
 const banners = [
   {
     name: "Netflix",
-    img: "https://picsum.photos/200/300",
+    img: "https://source.unsplash.com/LaZfUnbyAmA",
     url: "https://www.netflix.com/",
     description: "This is Netflix",
   },
@@ -19,7 +19,7 @@ const banners = [
   },
 ];
 
-const features = ["Image Processing", "DevTools", "Online Streaming"];
+const categories = ["Image Processing", "DevTools", "Online Streaming"];
 
 const websites = [
   {
@@ -61,4 +61,4 @@ const websites = [
   },
 ];
 
-export { banners, collections, websites };
+export { banners, websites, categories };
