@@ -1,7 +1,6 @@
 import { web3, features as allFeatures } from "../../constant";
 import Card from "../../components/card";
-import { CreateTable, AddWebsites, GetWebsites } from "../../api/route";
-import { useEffect, useRef } from "react";
+import { GetWebsites } from "../../api/route";
 
 export default async function Home() {
   const Websites = await GetWebsites();

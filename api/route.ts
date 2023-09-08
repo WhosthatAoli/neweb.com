@@ -38,3 +38,8 @@ export async function GetWebsites() {
   const websites = await sql`SELECT * FROM Websites;`;
   return websites;
 }
+
+export async function GetData(tableName: string) {
+  const data = await sql`SELECT * FROM ${tableName};`;
+  return data;
+}

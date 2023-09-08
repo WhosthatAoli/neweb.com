@@ -20,7 +20,7 @@ const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
           <a href="/web3" className="text-xl">
             Web3
           </a>
-          <a href="/web3" className="text-xl">
+          <a href="/gamefiHub" className="text-xl">
             GameFiHub
           </a>
         </div>
