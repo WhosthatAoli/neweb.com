@@ -108,44 +108,58 @@ const websites = [
 
 
 
+
+
+
 const web3_features = ["Swap", "NFT", "Web3 Dev", "Stats"];
 const web3 = [
   {
-    name: "UniSwap v3",
-    img: "",
-    url: "https://app.uniswap.org/#/swap",
-    description: "This is a website",
-    feature: ["Swap"],
+    "name": "UniSwap v3",
+    "img": "/screenshots/UniSwap v3.png",
+    "url": "https://app.uniswap.org/#/swap",
+    "description": "This is a website",
+    "feature": [
+      "Swap"
+    ]
   },
   {
-    name: "Curve",
-    img: "",
-    url: "https://www.curve.fi/",
-    description: "This is a website",
-    feature: ["Swap"],
+    "name": "Curve",
+    "img": "/screenshots/Curve.png",
+    "url": "https://www.curve.fi/",
+    "description": "This is a website",
+    "feature": [
+      "Swap"
+    ]
   },
   {
-    name: "OpenSea",
-    img: "",
-    url: "https://opensea.io/",
-    description: "This is a website",
-    feature: ["NFT"],
+    "name": "OpenSea",
+    "img": "/screenshots/OpenSea.png",
+    "url": "https://opensea.io/",
+    "description": "This is a website",
+    "feature": [
+      "NFT"
+    ]
   },
   {
-    name: "Third Web",
-    img: "",
-    url: "https://thirdweb.com/",
-    description: "This is a website",
-    feature: ["Web3 Dev"],
+    "name": "Third Web",
+    "img": "/screenshots/Third Web.png",
+    "url": "https://thirdweb.com/",
+    "description": "This is a website",
+    "feature": [
+      "Web3 Dev"
+    ]
   },
   {
-    name: "Curve",
-    img: "",
-    url: "https://www.curve.fi/",
-    description: "This is a website",
-    feature: ["Stats"],
-  },
+    "name": "Curve",
+    "img": "",
+    "url": "https://www.curve.fi/",
+    "description": "This is a website",
+    "feature": [
+      "Stats"
+    ]
+  }
 ];
+
 
 const needUpdate = [];
 
