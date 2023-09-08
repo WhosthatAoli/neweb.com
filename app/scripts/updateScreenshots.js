@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
-const { websites } = require('../../constant/index');
+const { websites, needUpdate } = require('../../constant/index');
 const sharp = require('sharp');
 
 async function takeScreenshot(url, screenshotPath) {
@@ -32,7 +32,8 @@ async function updateScreenshots() {
 
     console.log("start screenshot");
     for (let site of websites) {
-        if (site.url && !fetchedUrls.has(site.url)) { // Check if the URL has not been fetched before
+        // If needUpdate is empty, or if the site's URL is in the needUpdate array, and we haven't fetched it before
+        if (site.url && (!needUpdate.length || needUpdate.includes(site.url)) && !fetchedUrls.has(site.url)) {
             const screenshotPath = path.join(__dirname, '../../public/screenshots', `${site.name}.png`);
             await takeScreenshot(site.url, screenshotPath);
             site.img = `/screenshots/${site.name}.png`;
