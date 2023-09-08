@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
-const { websites, needUpdate } = require('../../constant/index');
+const { websites, needUpdate, web3 } = require('../../constant/index');
 const sharp = require('sharp');
 
 async function takeScreenshot(url, screenshotPath) {
@@ -27,28 +27,28 @@ async function takeScreenshot(url, screenshotPath) {
     await browser.close();
 }
 
-async function updateScreenshots() {
-    const fetchedUrls = new Set(); // This set will track which URLs we've already fetched
+async function updateScreenshots(dataSet, updateSet, dataName) {
+    const fetchedUrls = new Set();
 
     console.log("start screenshot");
-    for (let site of websites) {
-        // If needUpdate is empty, or if the site's URL is in the needUpdate array, and we haven't fetched it before
-        if (site.url && (!needUpdate.length || needUpdate.includes(site.url)) && !fetchedUrls.has(site.url)) {
+    for (let site of dataSet) {
+        if (site.url && (!updateSet.length || updateSet.includes(site.url)) && !fetchedUrls.has(site.url)) {
             const screenshotPath = path.join(__dirname, '../../public/screenshots', `${site.name}.png`);
             await takeScreenshot(site.url, screenshotPath);
             site.img = `/screenshots/${site.name}.png`;
 
-            fetchedUrls.add(site.url); // Mark this URL as fetched
+            fetchedUrls.add(site.url);
         }
     }
 
     console.log("finish screenshot, start saving data: ");
     const fileContent = fs.readFileSync(path.join(__dirname, '../../constant/index.js'), 'utf-8');
-    const updatedWebsitesContent = `const websites = ${JSON.stringify(websites, null, 2)};`;
+    const updatedDataContent = `const ${dataName} = ${JSON.stringify(dataSet, null, 2)};`;
 
-    const newFileContent = fileContent.replace(/const websites = [\s\S]*?;/, updatedWebsitesContent + '\n');
+    const newFileContent = fileContent.replace(new RegExp(`const ${dataName} = [\\s\\S]*?;`), updatedDataContent + '\n');
     fs.writeFileSync(path.join(__dirname, '../../constant/index.js'), newFileContent, 'utf-8');
     console.log("finish saving data");
 }
 
-updateScreenshots();
+updateScreenshots(websites, needUpdate, 'websites');  // 参数 1 和参数 3 保持和constant/index.js中的变量名一致
+updateScreenshots(web3, needUpdate, 'web3');    // 需要更新新的数组里的截图,就创建新的updateScreenshots方法
