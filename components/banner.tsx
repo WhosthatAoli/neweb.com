@@ -50,8 +50,8 @@ const Banner: React.FunctionComponent<BannerProps> = (props) => {
         <div className="w-full bg-gray-400 p-8 bg-transparent flex flex-col justify-center gap-10">
           <div className="flex justify-start items-center gap-10 text-white">
             {
-              categories.map(item => (
-                <div className="font-bold">{item}</div>
+              categories.map((item, index) => (
+                <div key={index} className="font-bold">{item}</div>
               ))
             }
           </div>
