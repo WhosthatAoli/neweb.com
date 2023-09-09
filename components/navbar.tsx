@@ -7,7 +7,7 @@ interface NavbarProps {}
 const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
   return (
     <nav>
-      <div className="flex flex-row justify-between font-bold mt-4">
+      <div className="flex flex-row justify-between font-bold mt-4 text-white">
         <div className="flex flex-row items-center gap-6 pl-6">
           <img
             src={logo.src}
