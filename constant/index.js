@@ -7,7 +7,7 @@ const banners = [
   },
   {
     name: "Netflix",
-    img: "https://picsum.photos/200/300",
+    img: "https://source.unsplash.com/twN2k8dsOWo",
     url: "https://www.netflix.com/",
     description: "This is Netflix",
   },
@@ -18,6 +18,8 @@ const banners = [
     description: "This is Netflix",
   },
 ];
+
+const categories = ["All", "Game", "Video", "Design", "VR", "AR"];
 
 const features = ["Image Processing", "DevTools", "Online Streaming", "Swap"];
 
@@ -124,4 +126,11 @@ const web3 = [
   },
 ];
 
-module.exports = { banners, features, websites, web3, web3_features };
+module.exports = {
+  banners,
+  features,
+  websites,
+  web3,
+  web3_features,
+  categories,
+};
