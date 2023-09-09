@@ -7,13 +7,13 @@ const banners = [
   },
   {
     name: "Netflix",
-    img: "https://source.unsplash.com/twN2k8dsOWo",
+    img: "https://source.unsplash.com/U79ZP0P5qck",
     url: "https://www.netflix.com/",
     description: "This is Netflix",
   },
   {
     name: "Netflix",
-    img: "https://picsum.photos/200/300",
+    img: "https://source.unsplash.com/wkb5BM3vlWY",
     url: "https://www.netflix.com/",
     description: "This is Netflix",
   },
