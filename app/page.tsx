@@ -7,7 +7,6 @@ import Banner from "@/components/banner";
 export default function Home() {
   return (
     <div>
-      <Banner />
       {allFeatures.map((feature) => (
         <div key={feature} className="collection mt-12">
           <div className="text-2xl font-bold mt-2 ml-6 mb-2">{feature}</div>
