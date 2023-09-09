@@ -55,9 +55,9 @@ const Banner: React.FunctionComponent<BannerProps> = (props) => {
               ))
             }
           </div>
-          <div className="relative">
+          <div className="relative group">
             <button 
-              className="absolute top-40 -left-5 w-12 h-12 rounded-full bg-[#00000080] text-2xl text-white font-semibold opacity-100 z-10" 
+              className="absolute top-40 -left-5 w-12 h-12 rounded-full bg-[#00000080] text-2xl text-white font-semibold z-10 opacity-0 group-hover:opacity-100 shadow-md transition duration-300 ease-in-out" 
               onClick={handlePrevious}
             >
               &lt;
@@ -78,7 +78,7 @@ const Banner: React.FunctionComponent<BannerProps> = (props) => {
               </a>
             }
             <button 
-              className="absolute top-40 -right-5 w-12 h-12 rounded-full bg-[#00000080] text-2xl text-white font-semibold opacity-100 z-10" 
+              className="absolute top-40 -right-5 w-12 h-12 rounded-full bg-[#00000080] text-2xl text-white font-semibold z-10 opacity-0 group-hover:opacity-100 shadow-md transition duration-300 ease-in-out" 
               onClick={handleNext}
             >
               &gt;
