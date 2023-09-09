@@ -23,6 +23,12 @@ const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
           <a href="/Home/gamefiHub" className="text-xl">
             GameFiHub
           </a>
+          <a href="/APItest" className="text-xl">
+            APItest
+          </a>
+          <a href="/AddNewWebInfo" className="text-xl">
+            AddNewWebInfo
+          </a>
         </div>
         <div className="flex flex-row items-center gap-4 pr-6">
           <a href="#" className="">

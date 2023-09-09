@@ -1,6 +1,8 @@
 import { web3, features as allFeatures } from "../../constant";
 import Card from "../../components/card";
 import { GetWebsites } from "../../api/route";
+import Banner from "../../components/banner";
+
 
 export default async function Home() {
   const Websites = await GetWebsites();
@@ -10,6 +12,7 @@ export default async function Home() {
 
   return (
     <div>
+      <Banner />
       {allFeatures.map((feature) => (
         <div key={feature} className="collection mt-12">
           <div className="text-2xl font-bold mt-2 ml-6 mb-2">{feature}</div>
