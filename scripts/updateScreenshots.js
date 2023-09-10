@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
-const { websites, needUpdate, web3 } = require('../../constant/index');
+const { websites, needUpdate, web3 } = require('../constant/index');
 const sharp = require('sharp');
 
 async function takeScreenshot(url, screenshotPath) {
@@ -33,7 +33,7 @@ async function updateScreenshots(dataSet, updateSet, dataName) {
     console.log("start screenshot");
     for (let site of dataSet) {
         if (site.url && (!updateSet.length || updateSet.includes(site.url)) && !fetchedUrls.has(site.url)) {
-            const screenshotPath = path.join(__dirname, '../../public/screenshots', `${site.name}.png`);
+            const screenshotPath = path.join(__dirname, '../public/screenshots', `${site.name}.png`);
             await takeScreenshot(site.url, screenshotPath);
             site.img = `/screenshots/${site.name}.png`;
 
@@ -42,11 +42,11 @@ async function updateScreenshots(dataSet, updateSet, dataName) {
     }
 
     console.log("finish screenshot, start saving data: ");
-    const fileContent = fs.readFileSync(path.join(__dirname, '../../constant/index.js'), 'utf-8');
+    const fileContent = fs.readFileSync(path.join(__dirname, '../constant/index.js'), 'utf-8');
     const updatedDataContent = `const ${dataName} = ${JSON.stringify(dataSet, null, 2)};`;
 
     const newFileContent = fileContent.replace(new RegExp(`const ${dataName} = [\\s\\S]*?;`), updatedDataContent + '\n');
-    fs.writeFileSync(path.join(__dirname, '../../constant/index.js'), newFileContent, 'utf-8');
+    fs.writeFileSync(path.join(__dirname, '../constant/index.js'), newFileContent, 'utf-8');
     console.log("finish saving data");
 }
 

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "updateScreenshot": "node app/scripts/updateScreenshots.js"
+    "updateScreenshot": "node scripts/updateScreenshots.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
