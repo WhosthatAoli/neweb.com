@@ -1,10 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
-const { websites, needUpdate, web3 } = require('../constant/index');
 const sharp = require('sharp');
 
-async function takeScreenshot(url, screenshotPath) {
+async function takeScreenshot(url, imgName) {
     const browser = await chromium.launch();
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -22,7 +21,7 @@ async function takeScreenshot(url, screenshotPath) {
     const optimizedImage = await sharp(buffer)
         .png({ quality: 90 })
         .toBuffer();
-
+    const screenshotPath = path.resolve('./public/screenshots', `${imgName}.png`);
     fs.writeFileSync(screenshotPath, optimizedImage);
     await browser.close();
 }
@@ -33,8 +32,7 @@ async function updateScreenshots(dataSet, updateSet, dataName) {
     console.log("start screenshot");
     for (let site of dataSet) {
         if (site.url && (!updateSet.length || updateSet.includes(site.url)) && !fetchedUrls.has(site.url)) {
-            const screenshotPath = path.join(__dirname, '../public/screenshots', `${site.name}.png`);
-            await takeScreenshot(site.url, screenshotPath);
+            await takeScreenshot(site.url, site.name);
             site.img = `/screenshots/${site.name}.png`;
 
             fetchedUrls.add(site.url);
@@ -50,5 +48,14 @@ async function updateScreenshots(dataSet, updateSet, dataName) {
     console.log("finish saving data");
 }
 
-updateScreenshots(websites, needUpdate, 'websites');  // 参数 1 和参数 3 保持和constant/index.js中的变量名一致
-updateScreenshots(web3, needUpdate, 'web3');    // 需要更新新的数组里的截图,就创建新的updateScreenshots方法
+module.exports = {
+    takeScreenshot,
+    updateScreenshots
+};
+
+
+async function sleep(millis) {
+    setTimeout(() => {
+        console.log(`sleep ${millis} ms`);
+    }, millis);
+}

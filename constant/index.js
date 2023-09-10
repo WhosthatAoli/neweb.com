@@ -109,6 +109,7 @@ const websites = [
 ];
 
 
+
 const web3_features = ["Swap", "NFT", "Web3 Dev", "Stats"];
 const web3 = [
   {
@@ -157,6 +158,7 @@ const web3 = [
     ]
   }
 ];
+
 
 
 const needUpdate = [];
