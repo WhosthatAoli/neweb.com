@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Banner from "../../components/banner";
-import { features, web3_features } from "../../constant";
+import { features, web3_features, GameFiHubFeatures } from "../../constant";
 
 export default function AddWebsite() {
   const [formData, setFormData] = useState({
@@ -14,6 +14,7 @@ export default function AddWebsite() {
   const [featuresData, setFeaturesData] = useState<string[]>([
     ...features,
     ...web3_features,
+    ...GameFiHubFeatures,
   ]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
