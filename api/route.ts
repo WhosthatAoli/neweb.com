@@ -74,3 +74,40 @@ export async function GetData(tableName: string) {
   const data = await sql`SELECT * FROM ${tableName};`;
   return data;
 }
+
+export async function DeleteWebsitesFromCategory({
+  category,
+  websiteName,
+}: {
+  category: string;
+  websiteName: string;
+}) {
+  const websites =
+    await sql`DELETE FROM ${category} WHERE name = ${websiteName};`;
+  return websites;
+}
+
+export async function UpdateWebsitesToCategory({
+  name,
+  newName,
+  img,
+  url,
+  description,
+  feature,
+  category,
+}: {
+  name: string;
+  newName: string;
+  img: string;
+  url: string;
+  description: string;
+  feature: string;
+  category: string;
+}) {
+  try {
+    await sql`UPDATE ${category} SET url = ${url}, description = ${description}, img = ${img}, name = ${newName}, feature = ${feature} WHERE name = ${name};`;
+    return NextResponse.json({ result: "success" }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
+}

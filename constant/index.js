@@ -19,10 +19,16 @@ const banners = [
   },
 ];
 
+
 //categories to table in database
 const categories = ["Website", "Web3", "GameFiHub"];
 
-const bannerCategories = ["All", "Game", "Video", "Design", "VR", "AR"];
+const bannerCategories = [
+  "All",
+  "Image Processing",
+  "DevTools",
+  "Online Streaming",
+];
 
 //features
 const features = ["Image Processing", "DevTools", "Online Streaming"];
@@ -40,4 +46,5 @@ module.exports = {
   GameFiHubFeatures,
   bannerCategories,
   needUpdate,
+  categories,
 };

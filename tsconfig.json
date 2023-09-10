@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "constent/index.js"
-  ],
+, "constant/index.js"  ],
   "exclude": [
     "node_modules"
   ]
