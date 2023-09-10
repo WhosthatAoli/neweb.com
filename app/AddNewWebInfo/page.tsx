@@ -1,6 +1,8 @@
 'use client'
 import { useState } from 'react';
 import Banner from "../../components/banner";
+import { features, web3_features } from '../../constant'
+
 
 export default function AddWebsite() {
   const [formData, setFormData] = useState({
@@ -10,6 +12,7 @@ export default function AddWebsite() {
     description: '',
     feature: ''
   });
+  const [featuresData, setFeaturesData] = useState([...features, ...web3_features]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,12 +23,19 @@ export default function AddWebsite() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-      });      
+      });
       if (response.ok) {
         response.json().then((data) => {
           console.log("response info: ", data);
         });
         alert('Website added successfully.');
+        setFormData({
+          name: '',
+          img: '',
+          url: '',
+          description: '',
+          feature: ''
+        });
       } else {
         const { error } = await response.json();
         alert(error);
@@ -86,11 +96,19 @@ export default function AddWebsite() {
             <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               className="p-2 w-full border rounded-md" rows={4}></textarea>
           </div>
-
           <div>
             <label className="block text-sm font-medium mb-2">Feature:</label>
-            <input type="text" value={formData.feature} onChange={(e) => setFormData({ ...formData, feature: e.target.value })}
-              className="p-2 w-full border rounded-md" />
+            <select
+              required
+              value={formData.feature}
+              onChange={(e) => setFormData({ ...formData, feature: e.target.value })}
+              className="p-2 w-full border rounded-md"
+            >
+              <option value="" disabled>Select a feature</option>
+              {featuresData.map((feature, index) => (
+                <option key={index} value={feature}>{feature}</option>
+              ))}
+            </select>
           </div>
 
           <div>

@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import { GetWebsites, AddWebsites } from "../../api/route";
 import { QueryResult, QueryResultRow } from '@vercel/postgres';
-
+import {takeScreenshot} from "../../scripts/updateScreenshots.js"
+import path from "path";
 
 export async function GET() {
     const websites = await GetWebsites();
@@ -15,6 +16,12 @@ export async function POST(req: Request) {
         try {
             const formData = await req.json();
             console.log("formData: ", formData);
+            if (formData.img === "") {
+                const isNull = await takeScreenshot(formData.url, formData.name);
+                if (isNull !== null) {
+                    formData.img = path.resolve("/screenshots/" + formData.name + ".png");
+                }
+            }
             const websites = await AddWebsites(formData);
             const websitesData = (websites as QueryResult<QueryResultRow>).rows;
             return NextResponse.json({ websitesData }, { status: 200 });
