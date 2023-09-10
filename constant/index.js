@@ -24,6 +24,7 @@ const categories = ["Website", "Web3", "GameFiHub"];
 
 const bannerCategories = ["All", "Game", "Video", "Design", "VR", "AR"];
 
+//features
 const features = ["Image Processing", "DevTools", "Online Streaming"];
 
 const web3_features = ["Defi", "NFT", "GameFi", "DAO", "Metaverse"];

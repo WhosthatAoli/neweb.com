@@ -18,13 +18,8 @@ const Card: React.FC<CardProps> = ({
   features,
 }) => {
   return (
-    <div className="rounded-lg w-80 min-w-fit shadow-lg hover:shadow-xl hover:-translate-y-2 duration-500">
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full"
-      >
+    <div className="rounded-lg w-80 shadow-lg hover:shadow-xl hover:-translate-y-2 duration-500">
+      <a href={url} target="_blank" rel="noopener noreferrer" className="w-80">
         <img
           className="rounded-lg object-cover w-80 h-60"
           src={image ? image : img.src}
@@ -34,7 +29,7 @@ const Card: React.FC<CardProps> = ({
           <div className="font-bold text-xl mb-2">
             {title ? title : "Card Title"}
           </div>
-          <p className="text-gray-700 text-base">
+          <p className="text-gray-700 text-base w-80">
             {content ? content : "Card Content"}
           </p>
           <ul className="mt-2 text-sm text-gray-600">
