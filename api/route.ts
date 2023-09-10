@@ -82,9 +82,12 @@ export async function DeleteWebsitesFromCategory({
   category: string;
   websiteName: string;
 }) {
-  const websites =
+  try {
     await sql`DELETE FROM ${category} WHERE name = ${websiteName};`;
-  return websites;
+    return NextResponse.json({ result: "success" }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
 }
 
 export async function UpdateWebsitesToCategory({
