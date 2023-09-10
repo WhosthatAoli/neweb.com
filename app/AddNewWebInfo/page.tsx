@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import Banner from "../../components/banner";
 
-
 export default function AddWebsite() {
   const [formData, setFormData] = useState({
     name: '',
@@ -14,9 +13,49 @@ export default function AddWebsite() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("form data", formData);
-    
+    try {
+      const response = await fetch('/api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });      
+      if (response.ok) {
+        response.json().then((data) => {
+          console.log("response info: ", data);
+        });
+        alert('Website added successfully.');
+      } else {
+        const { error } = await response.json();
+        alert(error);
+      }
+    } catch (error) {
+      alert('An error occurred. Please try again.');
+    }
   };
+
+  const handleTestBtn = async () => {
+    try {
+      const response = await fetch('/api', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.ok) {
+        response.json().then((data) => {
+          console.log("data: ", data);
+        });
+        alert('Test successfully.');
+      } else {
+        const { error } = await response.json();
+        alert(error);
+      }
+    } catch (error) {
+      alert('An error occurred. Please try again.');
+    }
+  }
 
   return (
     <div>
@@ -58,6 +97,7 @@ export default function AddWebsite() {
             <button type="submit" className="mt-4 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">Add</button>
           </div>
         </form>
+        <button type="button" onClick={handleTestBtn} className="mt-4 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">TEST-GetAllData</button>
       </div>
     </div>
   );

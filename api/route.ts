@@ -11,25 +11,13 @@ export async function CreateTable() {
   }
 }
 
-export async function AddWebsites({
-  name,
-  img,
-  url,
-  description,
-  feature,
-}: {
-  name: string;
-  img: string;
-  url: string;
-  description: string;
-  feature: string;
-}) {
+export async function AddWebsites({ name, img, url, description, feature, }:
+  { name: string; img: string; url: string; description: string; feature: string; }) {
   try {
     await sql`INSERT INTO Websites (name, img, url, description, feature) VALUES (${name}, ${img},${url},${description},${feature});`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
-
   const websites = await sql`SELECT * FROM Websites;`;
   return websites;
 }
