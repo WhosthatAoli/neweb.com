@@ -14,7 +14,9 @@ async function takeScreenshot(url, imgName) {
             new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout after 5 seconds')), 5000))
         ]);
     } catch (error) {
-        console.warn(`Warning for ${url}: ${error.message}`);
+        console.warn(`Warning for "${url}", error: ${error.message}`);
+        await browser.close();
+        return null;
     }
 
     const buffer = await page.screenshot();

@@ -17,8 +17,10 @@ export async function POST(req: Request) {
             const formData = await req.json();
             console.log("formData: ", formData);
             if (formData.img === "") {
-                await takeScreenshot(formData.url, formData.name);
-                formData.img = path.resolve("/screenshots/" + formData.name + ".png");
+                const isNull = await takeScreenshot(formData.url, formData.name);
+                if (isNull !== null) {
+                    formData.img = path.resolve("/screenshots/" + formData.name + ".png");
+                }
             }
             const websites = await AddWebsites(formData);
             const websitesData = (websites as QueryResult<QueryResultRow>).rows;
