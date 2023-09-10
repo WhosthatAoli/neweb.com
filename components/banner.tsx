@@ -3,7 +3,7 @@ import * as React from "react";
 import "../app/globals.css";
 import { banners } from "../constant";
 import { features } from "process";
-import { categories } from "../constant";
+import { bannerCategories } from "../constant";
 import Navbar from "./navbar";
 
 interface BannerProps {}
@@ -45,7 +45,7 @@ const Banner: React.FunctionComponent<BannerProps> = (props) => {
         <Navbar />
         <div className="w-full bg-gray-400 p-8 bg-transparent flex flex-col justify-center gap-10">
           <div className="flex justify-start items-center gap-10 text-white">
-            {categories.map((item, index) => (
+            {bannerCategories.map((item, index) => (
               <div key={index} className="font-bold">
                 {item}
               </div>
