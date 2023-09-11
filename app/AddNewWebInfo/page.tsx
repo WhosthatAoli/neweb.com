@@ -15,6 +15,7 @@ export default function AddWebsite() {
   const [featuresData, setFeaturesData] = useState<string[]>(
     [...new Set([...features, ...web3_features, ...GameFiHubFeatures])]
   );
+  const [showData, setShowData] = useState<any[]>([]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -34,6 +35,7 @@ export default function AddWebsite() {
       if (response.ok) {
         response.json().then((data) => {
           console.log("response info: ", data);
+          setShowData(data.websitesData)
         });
         alert("Website added successfully.");
         setFormData({
@@ -61,8 +63,9 @@ export default function AddWebsite() {
         },
       });
       if (response.ok) {
-        response.json().then((data) => {
-          console.log("data: ", data);
+        response.json().then((rawData) => {
+          console.log("rawData: ", rawData);
+          setShowData(rawData.websitesData);
         });
         alert("Test successfully.");
       } else {
@@ -176,6 +179,20 @@ export default function AddWebsite() {
         >
           TEST-GetAllData
         </button>
+        <ol>
+          {showData.map((item, index) => (
+            <li key={index} className="list-decimal">
+              <p>------------------------------</p>
+              <ul className="list-disc">
+                <li>Name: {item.name}</li>
+                <li>Image URL: {item.img}</li>
+                <li>Website URL: <a href={item.url} target="_blank" className="text-blue-600">{item.url}</a></li>
+                <li>Description: {item.description}</li>
+                <li>Feature: {item.feature}</li>
+              </ul>
+            </li>
+          ))}
+        </ol>
       </div>
     </div>
   );
