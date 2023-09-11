@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import Banner from "../../components/banner";
 import { features, web3_features, GameFiHubFeatures } from "../../constant";
+import { join } from "path";
 
 export default function AddWebsite() {
   const [formData, setFormData] = useState({
@@ -9,27 +10,32 @@ export default function AddWebsite() {
     img: "",
     url: "",
     description: "",
-    feature: "",
+    feature: [] as string[],
   });
-  const [featuresData, setFeaturesData] = useState<string[]>([
-    ...features,
-    ...web3_features,
-    ...GameFiHubFeatures,
-  ]);
+  const [featuresData, setFeaturesData] = useState<string[]>(
+    [...new Set([...features, ...web3_features, ...GameFiHubFeatures])]
+  );
+  const [showData, setShowData] = useState<any[]>([]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    // array to string
+    const sendFormData = {
+      ...formData,
+      feature: formData.feature.join(","),
+    };
     try {
       const response = await fetch("/api", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(sendFormData),
       });
       if (response.ok) {
         response.json().then((data) => {
           console.log("response info: ", data);
+          setShowData(data.websitesData)
         });
         alert("Website added successfully.");
         setFormData({
@@ -37,7 +43,7 @@ export default function AddWebsite() {
           img: "",
           url: "",
           description: "",
-          feature: "",
+          feature: [],
         });
       } else {
         const { error } = await response.json();
@@ -57,8 +63,9 @@ export default function AddWebsite() {
         },
       });
       if (response.ok) {
-        response.json().then((data) => {
-          console.log("data: ", data);
+        response.json().then((rawData) => {
+          console.log("rawData: ", rawData);
+          setShowData(rawData.websitesData);
         });
         alert("Test successfully.");
       } else {
@@ -129,23 +136,31 @@ export default function AddWebsite() {
           </div>
           <div>
             <label className="block text-sm font-medium mb-2">Feature:</label>
-            <select
-              required
-              value={formData.feature}
-              onChange={(e) =>
-                setFormData({ ...formData, feature: e.target.value })
-              }
-              className="p-2 w-full border rounded-md"
-            >
-              <option value="" disabled>
-                Select a feature
-              </option>
-              {featuresData.map((feature, index) => (
-                <option key={index} value={feature}>
-                  {feature}
-                </option>
-              ))}
-            </select>
+            {featuresData.map((feature, index) => (
+              <div key={index} className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  id={`feature_${index}`}
+                  value={feature}
+                  checked={formData.feature.includes(feature)}
+                  onChange={(e) => {
+                    const isChecked = e.target.checked;
+                    if (isChecked) {
+                      setFormData(prev => ({
+                        ...prev,
+                        feature: [...prev.feature, feature]
+                      }));
+                    } else {
+                      setFormData(prev => ({
+                        ...prev,
+                        feature: prev.feature.filter(f => f !== feature)
+                      }));
+                    }
+                  }}
+                />
+                <label htmlFor={`feature_${index}`}>{feature}</label>
+              </div>
+            ))}
           </div>
 
           <div>
@@ -164,6 +179,20 @@ export default function AddWebsite() {
         >
           TEST-GetAllData
         </button>
+        <ol>
+          {showData?.map((item, index) => (
+            <li key={index} className="list-decimal">
+              <p>------------------------------</p>
+              <ul className="list-disc">
+                <li>Name: {item.name}</li>
+                <li>Image URL: {item.img}</li>
+                <li>Website URL: <a href={item.url} target="_blank" className="text-blue-600">{item.url}</a></li>
+                <li>Description: {item.description}</li>
+                <li>Feature: {item.feature}</li>
+              </ul>
+            </li>
+          ))}
+        </ol>
       </div>
     </div>
   );
