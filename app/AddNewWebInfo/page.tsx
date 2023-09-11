@@ -180,7 +180,7 @@ export default function AddWebsite() {
           TEST-GetAllData
         </button>
         <ol>
-          {showData.map((item, index) => (
+          {showData?.map((item, index) => (
             <li key={index} className="list-decimal">
               <p>------------------------------</p>
               <ul className="list-disc">
