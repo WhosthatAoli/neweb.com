@@ -19,7 +19,10 @@ const Footer: React.FunctionComponent<FooterProps> = (props) => {
           future!
         </p>
       </div>
-      <div className="pl-8 pt-8 text-xl font-bold">Contact</div>
+      <div className="pl-8 pt-8 flex-col  justify-start w-1/4">
+        <div className="pl-8 pt-8 text-xl font-bold ">Contact</div>
+        <div className="pl-8 pt-4">Contact us at xxxizzle@gmail.com</div>
+      </div>
     </div>
   );
 };

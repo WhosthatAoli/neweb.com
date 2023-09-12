@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Banner from "../../components/banner";
 import { features, web3_features, GameFiHubFeatures } from "../../constant";
 import { join } from "path";
+import Navbar from "@/components/navbar";
 
 export default function AddWebsite() {
   const [formData, setFormData] = useState({
@@ -12,9 +13,9 @@ export default function AddWebsite() {
     description: "",
     feature: [] as string[],
   });
-  const [featuresData, setFeaturesData] = useState<string[]>(
-    [...new Set([...features, ...web3_features, ...GameFiHubFeatures])]
-  );
+  const [featuresData, setFeaturesData] = useState<string[]>([
+    ...new Set([...features, ...web3_features, ...GameFiHubFeatures]),
+  ]);
   const [showData, setShowData] = useState<any[]>([]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -35,7 +36,7 @@ export default function AddWebsite() {
       if (response.ok) {
         response.json().then((data) => {
           console.log("response info: ", data);
-          setShowData(data.websitesData)
+          setShowData(data.websitesData);
         });
         alert("Website added successfully.");
         setFormData({
@@ -79,7 +80,7 @@ export default function AddWebsite() {
 
   return (
     <div>
-      <Banner />
+      <Navbar />
       <div className="max-w-xl mx-auto mt-10">
         <h1 className="text-2xl font-bold mb-8">Add Website</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -146,14 +147,14 @@ export default function AddWebsite() {
                   onChange={(e) => {
                     const isChecked = e.target.checked;
                     if (isChecked) {
-                      setFormData(prev => ({
+                      setFormData((prev) => ({
                         ...prev,
-                        feature: [...prev.feature, feature]
+                        feature: [...prev.feature, feature],
                       }));
                     } else {
-                      setFormData(prev => ({
+                      setFormData((prev) => ({
                         ...prev,
-                        feature: prev.feature.filter(f => f !== feature)
+                        feature: prev.feature.filter((f) => f !== feature),
                       }));
                     }
                   }}
@@ -186,7 +187,12 @@ export default function AddWebsite() {
               <ul className="list-disc">
                 <li>Name: {item.name}</li>
                 <li>Image URL: {item.img}</li>
-                <li>Website URL: <a href={item.url} target="_blank" className="text-blue-600">{item.url}</a></li>
+                <li>
+                  Website URL:{" "}
+                  <a href={item.url} target="_blank" className="text-blue-600">
+                    {item.url}
+                  </a>
+                </li>
                 <li>Description: {item.description}</li>
                 <li>Feature: {item.feature}</li>
               </ul>

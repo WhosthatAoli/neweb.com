@@ -19,7 +19,6 @@ const banners = [
   },
 ];
 
-
 //categories to table in database
 const categories = ["Website", "Web3", "GameFiHub"];
 
@@ -31,7 +30,12 @@ const bannerCategories = [
 ];
 
 //features
-const features = ["Image Processing", "DevTools", "Online Streaming"];
+const features = [
+  "Developer Courses",
+  "Image Processing",
+  "DevTools",
+  "Online Streaming",
+];
 
 const web3_features = ["Defi", "NFT", "GameFi", "DAO", "Metaverse"];
 
