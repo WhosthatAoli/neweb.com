@@ -217,7 +217,6 @@ export default function AddWebsite() {
                 </li>
                 <li>Description: {item.description}</li>
                 <li>Feature: {item.feature}</li>
-                {/* 添加删除按钮 */}
                 <li>
                   <button
                     onClick={() => handleDelete('Websites',item.name)}
