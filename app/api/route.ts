@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { GetWebsites, AddWebsites, DeleteWebsitesFromCategory } from "../../api/route";
+import { GetWebsites, AddWebsites, DeleteWebsitesFromWebsites } from "../../api/route";
 import { QueryResult, QueryResultRow } from '@vercel/postgres';
 import {takeScreenshot} from "../../scripts/updateScreenshots.js"
 import path from "path";
@@ -36,8 +36,8 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
     if (req.method === 'DELETE') {
         try {
-            const { category, websiteName } = await req.json();
-            await DeleteWebsitesFromCategory({ category, websiteName });
+            const { websiteName } = await req.json();
+            await DeleteWebsitesFromWebsites({ websiteName });
             return NextResponse.json({ message: 'Website successfully deleted from category.' }, { status: 200 });
         } catch (error) {
             return NextResponse.json({ error: 'An error occurred while deleting the website from category.' }, { status: 500 });

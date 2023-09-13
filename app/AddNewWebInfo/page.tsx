@@ -68,7 +68,6 @@ export default function AddWebsite() {
           console.log("rawData: ", rawData);
           setShowData(rawData.websitesData);
         });
-        alert("Test successfully.");
       } else {
         const { error } = await response.json();
         alert(error);
@@ -78,19 +77,19 @@ export default function AddWebsite() {
     }
   };
 
-  const handleDelete = async (category: string, websiteName: string) => {
+  const handleDelete = async (websiteName: string) => {
     try {
       const response = await fetch("/api", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ category, websiteName }),
+        body: JSON.stringify({ websiteName }),
       });
       if (response.ok) {
         alert("Website deleted successfully.");
         // 更新状态，移除已经删除的条目
-        setShowData((prev) => prev.filter((item) => item.name !== name));
+        setShowData((prev) => prev.filter((item) => item.name !== websiteName));
       } else {
         const { error } = await response.json();
         alert(error);
@@ -219,7 +218,7 @@ export default function AddWebsite() {
                 <li>Feature: {item.feature}</li>
                 <li>
                   <button
-                    onClick={() => handleDelete("Websites", item.name)}
+                    onClick={() => handleDelete(item.name)}
                     className="mt-2 bg-red-500 text-white p-1 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
                   >
                     Delete

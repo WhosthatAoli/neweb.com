@@ -83,18 +83,11 @@ export async function DeleteWebsitesFromWebsites({
   websiteName: string;
 }) {
   try {
-    console.log("websiteName: ", websiteName);
-
-    const sqlQuery = `DELETE FROM Websites WHERE name = ${websiteName};`;
-    console.log(sqlQuery);
-
     const cb = await sql`DELETE FROM Websites WHERE name = ${websiteName};`;
     console.log("deleted", cb);
-
+    
     return NextResponse.json({ result: "success" }, { status: 200 });
   } catch (error) {
-    console.log("error: ", error);
-
     return NextResponse.json({ error }, { status: 500 });
   }
 }
