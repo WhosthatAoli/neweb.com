@@ -78,7 +78,7 @@ export default function AddWebsite() {
     }
   };
 
-  const handleDelete = async (category: string, websiteName:string) => {
+  const handleDelete = async (category: string, websiteName: string) => {
     try {
       const response = await fetch("/api", {
         method: "DELETE",
@@ -219,7 +219,7 @@ export default function AddWebsite() {
                 <li>Feature: {item.feature}</li>
                 <li>
                   <button
-                    onClick={() => handleDelete('Websites',item.name)}
+                    onClick={() => handleDelete("Websites", item.name)}
                     className="mt-2 bg-red-500 text-white p-1 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
                   >
                     Delete
