@@ -31,10 +31,14 @@ const bannerCategories = [
 
 //features
 const features = [
+  "Daily Useful",
   "Developer Courses",
   "Image Processing",
   "DevTools",
   "Online Streaming",
+  "DIY",
+  "AI",
+  "Vedio & Music & Audio",
 ];
 
 const web3_features = ["Defi", "NFT", "GameFi", "DAO", "Metaverse"];
