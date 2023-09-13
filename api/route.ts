@@ -25,7 +25,8 @@ export async function AddWebsites({
   feature: string;
 }) {
   try {
-    await sql`INSERT INTO Websites (name, img, url, description, feature) VALUES (${name}, ${img},${url},${description},${feature});`;
+    const cb = await sql`INSERT INTO Websites (name, img, url, description, feature) VALUES (${name}, ${img},${url},${description},${feature});`;
+    console.log("cb: ", cb);
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
@@ -83,9 +84,16 @@ export async function DeleteWebsitesFromCategory({
   websiteName: string;
 }) {
   try {
-    await sql`DELETE FROM ${category} WHERE name = ${websiteName};`;
+    console.log("category: ", category);
+    console.log("websiteName: ", websiteName);
+    
+    const cb = await sql`DELETE FROM ${category} WHERE name = ${websiteName};`;
+    console.log("deleted", cb);
+    
     return NextResponse.json({ result: "success" }, { status: 200 });
   } catch (error) {
+    console.log("error: ", error);
+    
     return NextResponse.json({ error }, { status: 500 });
   }
 }

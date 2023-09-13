@@ -78,6 +78,28 @@ export default function AddWebsite() {
     }
   };
 
+  const handleDelete = async (category: string, websiteName:string) => {
+    try {
+      const response = await fetch("/api", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ category, websiteName }),
+      });
+      if (response.ok) {
+        alert("Website deleted successfully.");
+        // 更新状态，移除已经删除的条目
+        setShowData((prev) => prev.filter((item) => item.name !== name));
+      } else {
+        const { error } = await response.json();
+        alert(error);
+      }
+    } catch (error) {
+      alert("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -195,6 +217,15 @@ export default function AddWebsite() {
                 </li>
                 <li>Description: {item.description}</li>
                 <li>Feature: {item.feature}</li>
+                {/* 添加删除按钮 */}
+                <li>
+                  <button
+                    onClick={() => handleDelete('Websites',item.name)}
+                    className="mt-2 bg-red-500 text-white p-1 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
+                  >
+                    Delete
+                  </button>
+                </li>
               </ul>
             </li>
           ))}
