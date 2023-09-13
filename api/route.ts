@@ -116,7 +116,7 @@ export async function UpdateWebsitesToCategory({
   category: string;
 }) {
   try {
-    await sql`UPDATE ${category} SET url = ${url}, description = ${description}, img = ${img}, name = ${newName}, feature = ${feature} WHERE name = ${name};`;
+    await sql`UPDATE ${category} SET url = ${url}, description = ${description}, img = ${img}, name = ${newName}, feature = ${feature} WHERE name = '${name}';`;
     return NextResponse.json({ result: "success" }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
