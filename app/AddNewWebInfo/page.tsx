@@ -17,6 +17,7 @@ export default function AddWebsite() {
     ...new Set([...features, ...web3_features, ...GameFiHubFeatures]),
   ]);
   const [showData, setShowData] = useState<any[]>([]);
+  const [editingItem, setEditingItem] = useState<any | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -96,6 +97,36 @@ export default function AddWebsite() {
       }
     } catch (error) {
       alert("An error occurred. Please try again.");
+    }
+  };
+
+  const handleEdit = (item: any) => {
+    setEditingItem(item);
+  };
+
+  const handleUpdate = async () => {
+    if (editingItem) {
+      // Assuming you have an endpoint to handle item updates.
+      try {
+        const response = await fetch("/api/update", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editingItem),
+        });
+        if (response.ok) {
+          alert("Item updated successfully.");
+          // Update the item in the showData state or fetch all data again.
+          handleTestBtn(); // This function fetches all data.
+        } else {
+          const { error } = await response.json();
+          alert(error);
+        }
+      } catch (error) {
+        alert("An error occurred. Please try again.");
+      }
+      setEditingItem(null); // Reset the editing item.
     }
   };
 
@@ -206,24 +237,61 @@ export default function AddWebsite() {
             <li key={index} className="list-decimal">
               <p>------------------------------</p>
               <ul className="list-disc">
-                <li>Name: {item.name}</li>
-                <li>Image URL: {item.img}</li>
-                <li>
-                  Website URL:{" "}
-                  <a href={item.url} target="_blank" className="text-blue-600">
-                    {item.url}
-                  </a>
-                </li>
-                <li>Description: {item.description}</li>
-                <li>Feature: {item.feature}</li>
-                <li>
-                  <button
-                    onClick={() => handleDelete(item.name)}
-                    className="mt-2 bg-red-500 text-white p-1 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
-                  >
-                    Delete
-                  </button>
-                </li>
+                {editingItem && editingItem.name === item.name ? (
+                  <>
+                    {/* This is the editing form */}
+                    <li>
+                      Name:
+                      <input
+                        type="text"
+                        className="p-2 w-full border rounded-md"
+                        value={editingItem.name}
+                        onChange={(e) => setEditingItem({ ...editingItem, name: e.target.value })}
+                      />
+                    </li>
+                    <li>Name: {item.name}</li>
+                    <li>Image URL: {item.img}</li>
+                    <li>
+                      Website URL:{" "}
+                      <a href={item.url} target="_blank" className="text-blue-600">
+                        {item.url}
+                      </a>
+                    </li>
+                    <li>Description: {item.description}</li>
+                    <li>Feature: {item.feature}</li>
+                    {/* Add other fields similarly... */}
+                    <li>
+                      <button onClick={handleUpdate} className="mt-2 ml-2 bg-green-500 text-white p-1 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">Update</button>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>Name: {item.name}</li>
+                    <li>Image URL: {item.img}</li>
+                    <li>
+                      Website URL:{" "}
+                      <a href={item.url} target="_blank" className="text-blue-600">
+                        {item.url}
+                      </a>
+                    </li>
+                    <li>Description: {item.description}</li>
+                    <li>Feature: {item.feature}</li>
+                    <li>
+                      <button
+                        onClick={() => handleDelete(item.name)}
+                        className="mt-2 bg-red-500 text-white p-1 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        onClick={() => handleEdit(item)}
+                        className="mt-2 ml-2 bg-yellow-500 text-white p-1 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                      >
+                        Edit
+                      </button>
+                    </li>
+                  </>
+                )}
               </ul>
             </li>
           ))}
