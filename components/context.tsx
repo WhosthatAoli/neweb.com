@@ -15,7 +15,7 @@ const MyContext = createContext({
 function MyContextProvider({ children }: { children: React.ReactNode }) {
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState(null);
-
+  //next.js 一定会先执行serverside，然后才会执行client side，所以就算是在client component里面，也要在useeffect里面使用localstorage
   useEffect(() => {
     const savedUser = JSON.parse(localStorage.getItem("user")!);
     if (savedUser) {
