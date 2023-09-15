@@ -1,13 +1,37 @@
 "use client";
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { logo } from "@/assets";
 import Navbar from "@/components/navbar";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import firebase_app from "../../../api/firebaseConfig";
+import { useRouter } from "next/navigation";
+import { MyContext } from "@/components/context";
 
 export default function Login() {
-  const [eamil, setEmail] = useState("");
+  const router = useRouter();
+  const auth = getAuth(firebase_app);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {};
+  const { isLogin, setIsLogin, user, setUser } = useContext(MyContext);
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(userCredential.user);
+      setIsLogin(true);
+      setUser(userCredential.user);
+      alert("Sign in success");
+      router.push("/");
+    } catch (error: any) {
+      console.log(error.message);
+      alert(error.message);
+      setPassword("");
+    }
+  };
 
   return (
     <>

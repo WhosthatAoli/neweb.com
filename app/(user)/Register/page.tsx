@@ -1,15 +1,45 @@
 "use client";
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { logo } from "@/assets";
 import Navbar from "@/components/navbar";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import firebase_app from "../../../api/firebaseConfig";
+import { useRouter } from "next/navigation";
+import { MyContext } from "@/components/context";
 
-export default function Login() {
-  const [eamil, setEmail] = useState("");
+export default function Register() {
+  const router = useRouter();
+  const auth = getAuth(firebase_app);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const { isLogin, setIsLogin, user, setUser } = useContext(MyContext);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     console.log("handleSubmit");
+    if (password !== password2) {
+      setPassword("");
+      setPassword2("");
+      alert("Passwords don't match");
+    } else {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        console.log(userCredential.user);
+        alert("Register success");
+        setIsLogin(true);
+        setUser(userCredential.user);
+        router.push("/");
+      } catch (error: any) {
+        console.log(error.message);
+        alert(error.message);
+      }
+    }
   };
 
   return (
@@ -69,6 +99,7 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                     id="password"
                     name="password"
+                    value={password}
                     type="password"
                     autoComplete="current-password"
                     required
@@ -89,8 +120,9 @@ export default function Login() {
                 <div className="mt-2">
                   <input
                     onChange={(e) => setPassword2(e.target.value)}
-                    id="password"
-                    name="password"
+                    id="password2"
+                    name="password2"
+                    value={password2}
                     type="password"
                     autoComplete="current-password"
                     required

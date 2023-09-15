@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Navbar from "../components/navbar";
 import Banner from "../components/banner";
 import Footer from "@/components/footer";
+import { MyContextProvider } from "@/components/context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex flex-col gap-6`}>
-        {children}
+        <MyContextProvider>{children}</MyContextProvider>
         <Footer />
       </body>
     </html>

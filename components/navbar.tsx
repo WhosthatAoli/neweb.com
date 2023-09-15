@@ -1,10 +1,15 @@
 import * as React from "react";
 import "../app/globals.css";
 import { logo } from "../assets";
+import { useContext } from "react";
+import { MyContext } from "./context";
 
 interface NavbarProps {}
 
 const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
+  const { isLogin, setIsLogin } = useContext(MyContext);
+  console.log(isLogin);
+
   return (
     <nav>
       <div className="flex flex-row justify-between font-bold mt-4 text-white">
@@ -32,14 +37,28 @@ const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
             test
           </a>
         </div>
-        <div className="flex flex-row items-center gap-4 pr-6">
-          <a href="/Login" className="">
-            Login
-          </a>
-          <a href="/Register" className="">
-            Register
-          </a>
-        </div>
+        {!isLogin ? (
+          <div className="flex flex-row items-center gap-4 pr-6">
+            <a href="/Login" className="">
+              Login
+            </a>
+            <a href="/Register" className="">
+              Register
+            </a>
+          </div>
+        ) : (
+          <div className="flex flex-row items-center gap-4 pr-6">
+            <a
+              href="/Login"
+              onClick={() => {
+                setIsLogin(false);
+              }}
+              className=""
+            >
+              Log out
+            </a>
+          </div>
+        )}
       </div>
     </nav>
   );
