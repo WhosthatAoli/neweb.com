@@ -27,7 +27,7 @@ export default function AddWebsite() {
       feature: formData.feature.join(","),
     };
     try {
-      const response = await fetch("/api", {
+      const response = await fetch("/api/addNewWebInfo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export default function AddWebsite() {
 
   const handleTestBtn = async () => {
     try {
-      const response = await fetch("/api", {
+      const response = await fetch("/api/addNewWebInfo", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export default function AddWebsite() {
 
   const handleDelete = async (websiteName: string) => {
     try {
-      const response = await fetch("/api", {
+      const response = await fetch("/api/addNewWebInfo", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -108,7 +108,7 @@ export default function AddWebsite() {
     if (editingItem) {
       // Assuming you have an endpoint to handle item updates.
       try {
-        const response = await fetch("/api/update", {
+        const response = await fetch("/api/addNewWebInfo", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

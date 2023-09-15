@@ -28,6 +28,9 @@ const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
           <a href="/AddNewWebInfo" className="text-xl">
             AddNewWebInfo
           </a>
+          <a href="/test" className="text-xl">
+            test
+          </a>
         </div>
         <div className="flex flex-row items-center gap-4 pr-6">
           <a href="/Login" className="">
