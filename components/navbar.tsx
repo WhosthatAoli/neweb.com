@@ -29,14 +29,14 @@ const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
             AddNewWebInfo
           </a>
         </div>
-        {/* <div className="flex flex-row items-center gap-4 pr-6">
-          <a href="#" className="">
+        <div className="flex flex-row items-center gap-4 pr-6">
+          <a href="/Login" className="">
             Login
           </a>
-          <a href="#" className="">
+          <a href="/Register" className="">
             Register
           </a>
-        </div> */}
+        </div>
       </div>
     </nav>
   );
