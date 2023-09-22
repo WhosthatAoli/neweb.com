@@ -3,11 +3,13 @@ import "../app/globals.css";
 import { logo } from "../assets";
 import { useContext } from "react";
 import { MyContext } from "./context";
+import { useRouter } from "next/navigation";
 
 interface NavbarProps {}
 
 const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
   const { isLogin, setIsLogin } = useContext(MyContext);
+  const router = useRouter();
   console.log(isLogin);
 
   return (
@@ -21,42 +23,70 @@ const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
               className="w-9 h-9 object-fill rounded-full"
             />
           </a>
-          <a href="/" className="text-xl">
+          <div
+            onClick={() => {
+              router.push("/");
+            }}
+            className="text-xl cursor-pointer"
+          >
             Home
-          </a>
+          </div>
           {/* <a href="/Home/web3" className="text-xl">
             Web3
           </a>
           <a href="/Home/gamefiHub" className="text-xl">
             GameFiHub
           </a> */}
-          <a href="/AddNewWebInfo" className="text-xl">
+          {/* <a href="/AddNewWebInfo" className="text-xl">
             AddNewWebInfo
-          </a>
-          <a href="/test" className="text-xl">
+          </a> */}
+          <div
+            className="cursor-pointer text-xl"
+            onClick={() => {
+              router.push("/AddNewWebInfo");
+            }}
+          >
+            AddNewWebInfo
+          </div>
+          <div
+            onClick={() => {
+              router.push("/test");
+            }}
+            className="text-xl cursor-pointer"
+          >
             test
-          </a>
+          </div>
         </div>
         {!isLogin ? (
           <div className="flex flex-row items-center gap-4 pr-6">
-            <a href="/Login" className="">
+            <div
+              onClick={() => {
+                router.push("/Login");
+              }}
+              className="cursor-pointer"
+            >
               Login
-            </a>
-            <a href="/Register" className="">
+            </div>
+            <div
+              onClick={() => {
+                router.push("/Register");
+              }}
+              className="cursor-pointer"
+            >
               Register
-            </a>
+            </div>
           </div>
         ) : (
           <div className="flex flex-row items-center gap-4 pr-6">
-            <a
-              href="/Login"
+            <div
               onClick={() => {
                 setIsLogin(false);
+                router.push("/");
               }}
               className=""
             >
               Log out
-            </a>
+            </div>
           </div>
         )}
       </div>
