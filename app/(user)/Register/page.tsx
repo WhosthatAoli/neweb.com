@@ -2,11 +2,11 @@
 import React from "react";
 import { useState, useContext } from "react";
 import { logo } from "@/assets";
-import Navbar from "@/components/navbar";
+import Navbar from "@/app/components/navbar";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import firebase_app from "../../../api/firebaseConfig";
+import firebase_app from "../../api/firebaseApi/firebaseConfig";
 import { useRouter } from "next/navigation";
-import { MyContext } from "@/components/context";
+import { MyContext } from "@/app/components/context";
 
 export default function Register() {
   const router = useRouter();

@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
-import "../app/globals.css";
-import { banners } from "../constant";
+import "../globals.css";
+import { banners } from "../lib/constant";
 import { features } from "process";
-import { bannerCategories } from "../constant";
+import { bannerCategories } from "../lib/constant";
 import Navbar from "./navbar";
 
 interface BannerProps {}

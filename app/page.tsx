@@ -1,7 +1,7 @@
-import { features as allFeatures } from "../constant";
-import Card from "../components/card";
+import { features as allFeatures } from "./lib/constant";
+import Card from "./components/card";
 import { GetWebsites } from "../api/route";
-import Banner from "../components/banner";
+import Banner from "./components/banner";
 
 export default async function Home() {
   const Websites = await GetWebsites();

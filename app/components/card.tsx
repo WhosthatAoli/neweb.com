@@ -1,6 +1,6 @@
 import * as React from "react";
-import "../app/globals.css";
-import img from "../public/images/image_1.jpg";
+import "../globals.css";
+import img from "../lib/public/images/image_1.jpg";
 
 interface CardProps {
   title: string;

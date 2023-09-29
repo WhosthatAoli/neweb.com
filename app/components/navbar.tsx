@@ -1,6 +1,6 @@
 import * as React from "react";
-import "../app/globals.css";
-import { logo } from "../assets";
+import "../globals.css";
+import { logo } from "../lib/assets";
 import { useContext } from "react";
 import { MyContext } from "./context";
 import { useRouter } from "next/navigation";

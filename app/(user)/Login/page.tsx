@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import { useState, useContext } from "react";
-import { logo } from "@/assets";
-import Navbar from "@/components/navbar";
+import { logo } from "../../lib/assets";
+import Navbar from "@/app/components/navbar";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import firebase_app from "../../../api/firebaseConfig";
+import firebase_app from "../../api/firebaseApi/firebaseConfig";
 import { useRouter } from "next/navigation";
-import { MyContext } from "@/components/context";
+import { MyContext } from "@/app/components/context";
 
 export default function Login() {
   const router = useRouter();

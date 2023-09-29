@@ -1,14 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { features, web3_features, GameFiHubFeatures } from "../../constant";
-import Navbar from "@/components/navbar";
-import firebase_app from "@/api/firebaseConfig"
+import { features, web3_features, GameFiHubFeatures } from "../lib/constant";
+import Navbar from "@/app/components/navbar";
+import firebase_app from "@/app/api/firebaseApi/firebaseConfig";
 import { getDatabase, ref, set, child, get, remove } from "firebase/database";
 import Form from "./Form";
 import WebsiteList from "./WebsiteList";
 import { getStorage, ref as ref_storage, uploadBytes } from "firebase/storage";
 import path from "path";
-
 
 export default function AddWebsite() {
   const [formData, setFormData] = useState({
@@ -25,7 +24,6 @@ export default function AddWebsite() {
   const [editingItem, setEditingItem] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [imgFile, setImgFile] = useState<File | null>(null);
-
 
   // 添加新数据
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -53,14 +51,16 @@ export default function AddWebsite() {
         const data = await response.json();
         if (imgFile !== null) {
           const storage = getStorage(firebase_app);
-          const imgPath = path.resolve("/screenshots/" + formData.name + ".png");
+          const imgPath = path.resolve(
+            "/screenshots/" + formData.name + ".png"
+          );
           const storageRef = ref_storage(storage, imgPath);
           uploadBytes(storageRef, imgFile).then((snapshot) => {
             console.log("Uploaded a blob or file!");
           });
         }
         sendFormData.img = data.img;
-        set(ref(db, 'server/websitesData/' + sendFormData.name), {
+        set(ref(db, "server/websitesData/" + sendFormData.name), {
           ...sendFormData,
         });
         alert("Website added successfully.");
@@ -85,7 +85,6 @@ export default function AddWebsite() {
       console.error("error: ", error);
       alert("An error occurred. Please try again.");
     }
-
   };
 
   // 获取所有数据
@@ -95,10 +94,9 @@ export default function AddWebsite() {
 
   // 删除条目
   const handleDelete = async (websiteName: string) => {
-
     const db = getDatabase(firebase_app);
     console.log("websiteName: ", websiteName);
-    remove(ref(db, 'server/websitesData/' + websiteName));
+    remove(ref(db, "server/websitesData/" + websiteName));
     // 刷新列表
     getAllWebsiteData();
   };
@@ -109,38 +107,44 @@ export default function AddWebsite() {
   };
 
   // 更新条目
-  const handleUpdate = async () => {
-
-  };
+  const handleUpdate = async () => {};
 
   // ==================== help func ====================
   const getAllWebsiteData = async () => {
     const dbRef = ref(getDatabase(firebase_app));
-    get(child(dbRef, `server/websitesData/`)).then((snapshot) => {
-      if (snapshot.exists()) {
-        // console.log(snapshot.val());
-        const websitesData = snapshot.val();
-        const showData = [];
-        for (const key in websitesData) {
-          const eachWebsite = websitesData[key];
-          showData.push(eachWebsite);
+    get(child(dbRef, `server/websitesData/`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          // console.log(snapshot.val());
+          const websitesData = snapshot.val();
+          const showData = [];
+          for (const key in websitesData) {
+            const eachWebsite = websitesData[key];
+            showData.push(eachWebsite);
+          }
+          setShowData(showData);
+        } else {
+          console.log("No data available");
         }
-        setShowData(showData);
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
-  }
-
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div>
       <Navbar />
       <div className="max-w-xl mx-auto mt-10">
         <h1 className="text-2xl font-bold mb-8">Add Website</h1>
-        <Form onSubmit={handleSubmit} formData={formData} setFormData={setFormData} featuresData={featuresData} isLoading={isLoading} setImgFile={setImgFile} />
+        <Form
+          onSubmit={handleSubmit}
+          formData={formData}
+          setFormData={setFormData}
+          featuresData={featuresData}
+          isLoading={isLoading}
+          setImgFile={setImgFile}
+        />
         <button
           type="button"
           onClick={handleTestBtn}
@@ -148,7 +152,12 @@ export default function AddWebsite() {
         >
           TEST-GetAllData
         </button>
-        <WebsiteList data={showData} onDelete={handleDelete} onEdit={handleEdit} editingItem={editingItem} />
+        <WebsiteList
+          data={showData}
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+          editingItem={editingItem}
+        />
       </div>
     </div>
   );

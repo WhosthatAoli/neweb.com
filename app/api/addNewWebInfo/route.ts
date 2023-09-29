@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
-import { takeScreenshot } from "@/scripts/updateScreenshots";
+import { takeScreenshot } from "@/app/lib/scripts/updateScreenshots";
 import path from "path";
 import { getStorage, ref as ref_storage, uploadBytes } from "firebase/storage";
-import firebase_app from "@/api/firebaseConfig";
-
+import firebase_app from "@/app/api/firebaseApi/firebaseConfig";
 
 export async function POST(req: Request) {
   try {
@@ -20,7 +19,7 @@ export async function POST(req: Request) {
         uploadBytes(storageRef, imgBuffer).then((snapshot) => {
           console.log("Uploaded a blob or file!");
         });
-      }else{
+      } else {
         throw new Error("take screenshot error");
       }
     }
@@ -28,6 +27,9 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ img }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: "fetch screenshot error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "fetch screenshot error" },
+      { status: 500 }
+    );
   }
 }
