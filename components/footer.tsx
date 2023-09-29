@@ -5,7 +5,7 @@ interface FooterProps {}
 
 const Footer: React.FunctionComponent<FooterProps> = (props) => {
   return (
-    <div className="footer bg-blue-400 flex gap-6 text-white pb-8">
+    <div id="bottom" className="footer bg-blue-400 flex gap-6 text-white pb-8">
       <div className="about pl-8 pt-8 flex-col  justify-start w-1/4">
         <img
           src={logo.src}
