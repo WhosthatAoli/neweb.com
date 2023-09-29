@@ -1,51 +1,33 @@
 import { NextResponse } from "next/server";
-import {
-  GetWebsites,
-  AddWebsites,
-  DeleteWebsitesFromWebsites,
-} from "../../../api/route";
-import { QueryResult, QueryResultRow } from "@vercel/postgres";
-import { takeScreenshot } from "../../../scripts/updateScreenshots.js";
+import { takeScreenshot } from "@/scripts/updateScreenshots";
 import path from "path";
+import { getStorage, ref as ref_storage, uploadBytes } from "firebase/storage";
+import firebase_app from "@/api/firebaseConfig";
 
-
-export async function GET() {
-  try {
-    const websites = await GetWebsites();
-    const websitesData = websites.rows;
-    return NextResponse.json({ websitesData }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
-  }
-}
 
 export async function POST(req: Request) {
   try {
     const formData = await req.json();
     console.log("formData: ", formData);
-    if (formData.img === "") {
-      const isNull = await takeScreenshot(formData.url, formData.name);
-      if (isNull !== null) {
-        formData.img = path.resolve("/screenshots/" + formData.name + ".png");
+    let img = formData.img;
+    if (img === "") {
+      const imgBuffer = await takeScreenshot(formData.url, formData.name);
+      if (imgBuffer !== null) {
+        // 如果截图了. 开始上传图片
+        const storage = getStorage(firebase_app);
+        img = path.resolve("/screenshots/" + formData.name + ".png");
+        const storageRef = ref_storage(storage, img);
+        uploadBytes(storageRef, imgBuffer).then((snapshot) => {
+          console.log("Uploaded a blob or file!");
+        });
+      }else{
+        throw new Error("take screenshot error");
       }
     }
-    const websites = await AddWebsites(formData);
-    const websitesData = (websites as QueryResult<QueryResultRow>).rows;
-    return NextResponse.json({ websitesData }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
-  }
-}
+    console.log("img: ", img);
 
-export async function DELETE(req: Request) {
-  try {
-    const { websiteName } = await req.json();
-    await DeleteWebsitesFromWebsites({ websiteName });
-    return NextResponse.json(
-      { message: "Website successfully deleted from category." },
-      { status: 200 }
-    );
+    return NextResponse.json({ img }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
+    return NextResponse.json({ error: "fetch screenshot error" }, { status: 500 });
   }
 }

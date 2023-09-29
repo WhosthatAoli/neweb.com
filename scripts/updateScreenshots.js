@@ -4,31 +4,31 @@ const { chromium } = require('playwright');
 const sharp = require('sharp');
 
 async function takeScreenshot(url, imgName) {
-    const browser = await chromium.launch();
-    // const context = await browser.newContext();
-    const context = await browser.newContext({
-        userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537'
-    });
-    const page = await context.newPage();
-
     try {
+        const browser = await chromium.launch();
+        // const context = await browser.newContext();
+        const context = await browser.newContext({
+            userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537'
+        });
+        const page = await context.newPage();
         await Promise.race([
             page.goto(url, { waitUntil: 'networkidle' }),
-            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout after 5 seconds')), 5000))
+            new Promise((resolve) => setTimeout(() => resolve(console.log("wait 5 seconds")), 5000))
         ]);
+        const buffer = await page.screenshot();
+        const optimizedImage = await sharp(buffer)
+            .png({ quality: 90 })
+            .toBuffer();
+        const screenshotPath = path.resolve('./public/screenshots', `${imgName}.png`);
+        fs.writeFileSync(screenshotPath, optimizedImage);
+        console.log(`Screenshot saved: ${screenshotPath}`);
+        await browser.close();
+        return optimizedImage;
     } catch (error) {
         console.warn(`Warning for "${url}", error: ${error.message}`);
         await browser.close();
         return null;
     }
-
-    const buffer = await page.screenshot();
-    const optimizedImage = await sharp(buffer)
-        .png({ quality: 90 })
-        .toBuffer();
-    const screenshotPath = path.resolve('./public/screenshots', `${imgName}.png`);
-    fs.writeFileSync(screenshotPath, optimizedImage);
-    await browser.close();
 }
 
 async function updateScreenshots(dataSet, updateSet, dataName) {
