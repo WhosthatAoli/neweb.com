@@ -1,0 +1,121 @@
+{
+    "Netflix": {
+        "name": "Netflix",
+        "img": "/screenshots/Netflix.png",
+        "url": "https://www.netflix.com/",
+        "description": "Offers a wide variety of movies, TV shows, documentaries, and other entertainment content.",
+        "feature": "Online Streaming"
+    },
+    "MidJourney": {
+        "name": "MidJourney",
+        "img": "/screenshots/MidJourney.png",
+        "url": "https://www.midjourney.com/",
+        "description": "Midjourney is an independent research lab exploring new mediums of thought and expanding the imaginative powers of the human species.",
+        "feature": "Image Processing"
+    },
+    "Neetcode":{
+        "name": "Neetcode",
+        "img": "/screenshots/Neetcode.png",
+        "url": "https://neetcode.io/",
+        "description": "A better way to prepare for coding interviews.",
+        "feature": "Developer Courses"
+    },
+    "Scrimba":{
+        "name": "Scrimba",
+        "img": "/screenshots/Scrimba.png",
+        "url": "https://scrimba.com/",
+        "description": "Our Frontend Career Path helps motivated students\nbecome hireable developers for a fraction of the cost\n",
+        "feature": "Developer Courses"
+    },
+    "Netninja": {
+        "name": "Netninja",
+        "img": "/screenshots/Netninja.png",
+        "url": "https://netninja.dev/",
+        "description": "Black-Belt\nYour Coding Skills",
+        "feature": "Developer Courses"
+    },
+    "Algoexpert": {
+        "name": "Algoexpert",
+        "img": "/screenshots/Algoexpert.png",
+        "url": "https://www.algoexpert.io/product",
+        "description": "The ultimate resource to prepare for coding interviews.\nEverything you need, in one streamlined platform.",
+        "feature": "Developer Courses"
+    },
+    "YifanTV":{
+        "name": "YifanTV",
+        "img": "/screenshots/YifanTV.png",
+        "url": "https://www.yfsp.tv/",
+        "description": "An online video platform that integrates distribution, upload, and community, allowing free online viewing of the latest movies, TV dramas, variety shows, anime, and videos",
+        "feature": "Online Streaming"
+    },
+    "XiaobaoTV":{
+        "name": "XiaobaoTV",
+        "img": "/screenshots/XiaobaoTV.png",
+        "url": "https://xbyy.cc/",
+        "description": "Overseas Chinese cinema. Committed to creating a refreshing, resource rich, and up-to-date overseas Chinese sharing cinema",
+        "feature": "Online Streaming"
+    },
+    "Libvio":{
+        "name": "Libvio",
+        "img": "/screenshots/Libvio.png",
+        "url": "https://www.libvio.pro/",
+        "description": "Small group private storage",
+        "feature": "Online Streaming"
+    },
+    "Wormhole":{
+        "name": "Wormhole",
+        "img": "/screenshots/Wormhole.png",
+        "url": "https://wormhole.app/",
+        "description": "Simple, private file sharing.\nWormhole lets you share files with end-to-end encryption and a link that automatically expires. So you can keep what you share private and make sure your stuff doesn't stay online forever.",
+        "feature": "Daily Useful"
+    },
+    "BeFunky":{
+        "name": "BeFunky",
+        "img": "/screenshots/BeFunky.png",
+        "url": "https://www.befunky.com/",
+        "description": "BeFunky's all-in-one online Creative Platform has everything you need to easily edit photos, create graphic designs, and make photo collages.",
+        "feature": "Image Processing"
+    },
+    "Desygner":{
+        "name": "Desygner",
+        "img": "/screenshots/Desygner.png",
+        "url": "https://desygner.com/",
+        "description": "Access to easy-to-use editing features like Background Remover, PDF Editor and Animation. Explore the largest professional stock photo collection of 150+ million images.",
+        "feature": "Image Processing,DIY"
+    },
+    "ILovePDF":{
+        "name": "ILovePDF",
+        "img": "/screenshots/ILovePDF.png",
+        "url": "https://www.ilovepdf.com/",
+        "description": "Every tool you need to use PDFs, at your fingertips. All are 100% FREE and easy to use! Merge, split, compress, convert, rotate, unlock and watermark PDFs with just a few clicks.",
+        "feature": "Daily Useful"
+    },
+    "Pixlr":{
+        "name": "Pixlr",
+        "img": "/screenshots/Pixlr.png",
+        "url": "https://pixlr.com/",
+        "description": "Free Online Photo Editor, AI image Generator & Design tool.\nFree photo editing and design tools with AI-power. Edit photos and create stunning designs right in your browser, on your phone or desktop for free.",
+        "feature": "Image Processing"
+    },
+    "TinyPNG":{
+        "name": "TinyPNG",
+        "img": "/screenshots/TinyPNG.png",
+        "url": "https://tinypng.com/",
+        "description": "Smart WebP, PNG and JPEG compression.\nMore than 1 billion WebP, PNG and JPEG images optimized and still counting!",
+        "feature": "Daily Useful,Image Processing"
+    },
+    "Online Converter":{
+        "name": "Online Converter",
+        "img": "/screenshots/Online Converter.png",
+        "url": "https://www.online-convert.com/",
+        "description": "Convert media files online from one format into another.",
+        "feature": "Daily Useful"
+    },
+    "Invideo":{
+        "name": "Invideo",
+        "img": "/screenshots/Invideo.png",
+        "url": "https://invideo.io/",
+        "description": "Create publish-worthy videos on day one.\nInVideo simplifies video creation with ready-made templates that you can quickly customize even if you’ve never done it before.",
+        "feature": "AI,Vedio & Music & Audio"
+    }
+}
