@@ -28,9 +28,9 @@ export default function AddWebsite() {
     event.preventDefault();
     setIsLoading(true);
     await updateFormData(formData, imgFile);
-    setIsLoading(false);
     // 刷新列表
     setShowData(await getAllWebsiteData());
+    alert("Website added successfully.");
     // 清空表单
     setFormData({
       name: "",
@@ -40,18 +40,21 @@ export default function AddWebsite() {
       feature: [] as string[],
     });
     setImgFile(null);
+    setIsLoading(false);
   };
 
   // 获取所有数据
-  const handleTestBtn = async () => {
+  const handleTestBtn = async () => { 
     setShowData(await getAllWebsiteData());
   };
 
   // 删除条目
   const handleDelete = async (websiteName: string) => {
+    setIsLoading(true);
     deleteDatabaseData(websiteName);
     // 刷新列表
     setShowData(await getAllWebsiteData());
+    setIsLoading(false);
   };
 
   // switch 到修改条目
