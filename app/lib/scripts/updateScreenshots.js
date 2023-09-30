@@ -19,9 +19,9 @@ async function takeScreenshot(url, imgName) {
         const optimizedImage = await sharp(buffer)
             .png({ quality: 90 })
             .toBuffer();
-        const screenshotPath = path.resolve('./public/screenshots', `${imgName}.png`);
-        fs.writeFileSync(screenshotPath, optimizedImage);
-        console.log(`Screenshot saved: ${screenshotPath}`);
+        // const screenshotPath = path.resolve('./public/screenshots', `${imgName}.png`);
+        // fs.writeFileSync(screenshotPath, optimizedImage);
+        // console.log(`Screenshot saved: ${screenshotPath}`);
         await browser.close();
         return optimizedImage;
     } catch (error) {
