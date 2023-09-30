@@ -1,14 +1,11 @@
 import { features as allFeatures } from "./lib/constant";
 import Card from "./components/card";
-import { GetWebsites } from "../vercelPostGresapi/route";
 import Banner from "./components/banner";
+import { getAllWebsiteData } from "./api/firebaseApi/firebaseFunc";
 
 export default async function Home() {
-  const Websites = await GetWebsites();
-  console.log(typeof [...Websites.rows]);
-  console.log(typeof Websites.rows);
-  const websites = [...Websites.rows];
-
+  const websites = await getAllWebsiteData()
+  console.log("Websites: ",websites);
   return (
     <div>
       <Banner />

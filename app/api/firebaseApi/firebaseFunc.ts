@@ -1,6 +1,6 @@
 import firebase_app from "@/app/api/firebaseApi/firebaseConfig";
 import { getDatabase, ref, set, child, get, remove } from "firebase/database";
-import { getStorage, ref as ref_storage, uploadBytes } from "firebase/storage";
+import { getStorage, ref as ref_storage, uploadBytes, getDownloadURL } from "firebase/storage";
 import path from "path";
 import { FormDataType } from "@/app/lib/types";
 
@@ -14,6 +14,14 @@ const getAllWebsiteData = async () => {
         const showData = [];
         for (const key in websitesData) {
             const eachWebsite = websitesData[key];
+            try {
+                eachWebsite.img = await downloadImageFile(eachWebsite.img)
+                console.log("eachWebsite.web: ", eachWebsite.web);
+                
+            } catch (error) {
+                console.log("get img error: ", error);
+                eachWebsite.img = "";
+            }
             showData.push(eachWebsite);
         }
         return showData;
@@ -103,10 +111,23 @@ const deleteDatabaseData = async (websiteName: string) => {
 };
 
 
+// 下载图片文件
+const downloadImageFile = async (imgPath: string) => {
+    const storage = getStorage(firebase_app);
+    const starsRef = ref_storage(storage, imgPath);
+    try {
+        const url = await getDownloadURL(starsRef);
+        return url;
+    } catch (error) {
+        throw new Error(error as string);
+    }
+}
+
+
 export {
     getAllWebsiteData,
     uploadImageFile,
     updateFormData,
-    deleteDatabaseData
+    deleteDatabaseData,
 }
 

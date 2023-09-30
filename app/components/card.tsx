@@ -1,6 +1,6 @@
 import * as React from "react";
 import "../globals.css";
-import img from "../lib/public/images/image_1.jpg";
+import img from "@/app/lib/assets/logo.png";
 
 interface CardProps {
   title: string;
