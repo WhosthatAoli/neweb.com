@@ -7,9 +7,10 @@ type FormProps = {
     featuresData: any;
     isLoading: boolean;
     setImgFile: any;
+    imgFile: any;
 }
 
-function Form({ onSubmit, formData, setFormData, featuresData, isLoading, setImgFile }: FormProps) {
+function Form({ onSubmit, formData, setFormData, featuresData, isLoading,imgFile, setImgFile }: FormProps) {
     const [imgUrl, setImgUrl] = React.useState<string | null>(null);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,8 +41,8 @@ function Form({ onSubmit, formData, setFormData, featuresData, isLoading, setImg
 
             <div>
                 <label className="block text-sm font-medium mb-2">Image File:</label>
-                <input type="file" onChange={handleFileChange} key={formData.name}/>
-                {imgUrl && formData.name && <img src={imgUrl} alt="Chosen" />}
+                <input type="file" onChange={handleFileChange} key={imgFile}/>
+                {imgUrl && imgFile && <img src={imgUrl} alt="Chosen" />}
             </div>
 
             <div>

@@ -27,7 +27,7 @@ async function takeScreenshot(url, imgName) {
     } catch (error) {
         console.warn(`Warning for "${url}", error: ${error.message}`);
         await browser.close();
-        return null;
+        throw error;
     }
 }
 
@@ -57,10 +57,3 @@ module.exports = {
     takeScreenshot,
     updateScreenshots
 };
-
-
-async function sleep(millis) {
-    setTimeout(() => {
-        console.log(`sleep ${millis} ms`);
-    }, millis);
-}
