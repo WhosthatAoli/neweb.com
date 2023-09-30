@@ -105,7 +105,7 @@ const updateFormData = async (formData: FormDataType, imgFile: File | null) => {
         return true;
     } catch (error) {
         console.error("error: ", error);
-        alert("An error occurred. Please try again: " + error);
+        alert("An updateFormData error occurred. Please try again");
         return false;
     }
 };

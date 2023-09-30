@@ -27,7 +27,11 @@ export default function AddWebsite() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
-    await updateFormData(formData, imgFile);
+    const isUpdated = await updateFormData(formData, imgFile);
+    if (!isUpdated) {
+      setIsLoading(false);
+      return;
+    }
     // 刷新列表
     setShowData(await getAllWebsiteData());
     alert("Website added successfully.");
