@@ -95,7 +95,6 @@ const updateFormData = async (formData: FormDataType, imgFile: File | null) => {
         }
         // 更新数据库
         await updateDatabase(formData);
-        alert("Website added successfully.");
         return true;
     } catch (error) {
         console.error("error: ", error);
