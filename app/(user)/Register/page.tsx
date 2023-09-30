@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useContext } from "react";
-import { logo } from "@/assets";
+import { logo } from "../../lib/assets";
 import Navbar from "@/app/components/navbar";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import firebase_app from "../../api/firebaseApi/firebaseConfig";
