@@ -1,6 +1,6 @@
 import firebase_app from "@/app/api/firebaseApi/firebaseConfig";
 import { getDatabase, ref, set, child, get, remove } from "firebase/database";
-import { getStorage, ref as ref_storage, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref as ref_storage, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import path from "path";
 import { FormDataType } from "@/app/lib/types";
 
@@ -17,9 +17,9 @@ const getAllWebsiteData = async () => {
             try {
                 eachWebsite.img = await downloadImageFile(eachWebsite.img)
                 console.log("eachWebsite.web: ", eachWebsite.web);
-                
+
             } catch (error) {
-                console.log("get img error: ", error);
+                console.log(eachWebsite.name + " image file not found.");
                 eachWebsite.img = "";
             }
             showData.push(eachWebsite);
@@ -108,6 +108,7 @@ const updateFormData = async (formData: FormDataType, imgFile: File | null) => {
 const deleteDatabaseData = async (websiteName: string) => {
     const db = getDatabase(firebase_app);
     remove(ref(db, "server/websitesData/" + websiteName));
+    await deleteImageFile("/screenshots/" + websiteName + ".png");
 };
 
 
@@ -118,6 +119,17 @@ const downloadImageFile = async (imgPath: string) => {
     try {
         const url = await getDownloadURL(starsRef);
         return url;
+    } catch (error) {
+        throw new Error(error as string);
+    }
+}
+
+// 删除图片文件
+const deleteImageFile = async (imgPath: string) => {
+    const storage = getStorage(firebase_app);
+    const desertRef = ref_storage(storage, imgPath);
+    try {
+        await deleteObject(desertRef);
     } catch (error) {
         throw new Error(error as string);
     }
