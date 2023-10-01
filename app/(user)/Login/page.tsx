@@ -13,6 +13,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const { isLogin, setIsLogin, user, setUser } = useContext(MyContext);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     try {
       const userCredential = await signInWithEmailAndPasswordApi(
         email,
