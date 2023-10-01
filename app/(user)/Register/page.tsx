@@ -3,14 +3,12 @@ import React from "react";
 import { useState, useContext } from "react";
 import { logo } from "../../lib/assets";
 import Navbar from "@/app/components/navbar";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import firebase_app from "../../api/firebaseApi/firebaseConfig";
 import { useRouter } from "next/navigation";
 import { MyContext } from "@/app/components/context";
+import { createUserWithEmailAndPasswordApi } from "@/app/api/firebaseApi/firebaseAuth";
 
 export default function Register() {
   const router = useRouter();
-  const auth = getAuth(firebase_app);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
@@ -25,8 +23,7 @@ export default function Register() {
       alert("Passwords don't match");
     } else {
       try {
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
+        const userCredential = await createUserWithEmailAndPasswordApi(
           email,
           password
         );

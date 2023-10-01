@@ -4,8 +4,8 @@ import Banner from "./components/banner";
 import { getAllWebsiteData } from "./api/firebaseApi/firebaseFunc";
 
 export default async function Home() {
-  const websites = await getAllWebsiteData()
-  console.log("Websites: ",websites);
+  const websites = await getAllWebsiteData();
+  console.log("Websites: ", websites);
   return (
     <div>
       <Banner />

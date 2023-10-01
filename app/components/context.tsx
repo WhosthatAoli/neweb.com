@@ -22,6 +22,7 @@ function MyContextProvider({ children }: { children: React.ReactNode }) {
       setUser(savedUser);
       setIsLogin(true);
     }
+    //console.log("useEffect");
   }, []);
 
   useEffect(() => {
