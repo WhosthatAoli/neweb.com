@@ -20,11 +20,12 @@ const Card: React.FC<CardProps> = ({
   features,
 }) => {
 
-  const [markedWebsites, setMarkedWebsites] = React.useState({})
+  const user: { uid: string } = JSON.parse(localStorage.getItem("user") || "{}");
+  const userId: string = user.uid;
 
-  const handleMark = (websiteTitle) => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const userId = user.uid
+  const [markedWebsites, setMarkedWebsites] = React.useState<string[]>([]);
+
+  const handleMark = (websiteTitle: string) => {
     saveMarkedWebsite(userId, websiteTitle).then(() => {
       console.log('website marked!')
     }).catch((err) => {
@@ -63,7 +64,7 @@ const Card: React.FC<CardProps> = ({
           </ul>
         </div>
       </a>
-      <div onClick={() => handleMark(title)}>Mark</div>
+      <button onClick={() => handleMark(title)}>Mark</button>
     </div>
   );
 };

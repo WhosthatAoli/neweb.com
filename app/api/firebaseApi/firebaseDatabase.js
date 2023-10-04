@@ -3,14 +3,12 @@ import firebase_app from "./firebaseConfig";
 
 const db = getDatabase(firebase_app);
 
-// Function to save a marked website
 export const saveMarkedWebsite = (userId, website) => {
   const markedWebsitesRef = ref(db, `users/${userId}/marked_websites`);
-  const newWebsiteRef = push(markedWebsitesRef); // Generate a unique key
+  const newWebsiteRef = push(markedWebsitesRef);
   return set(newWebsiteRef, website);
 };
 
-// Function to retrieve marked websites
 export const retrieveMarkedWebsites = (userId, callback) => {
   const markedWebsitesRef = ref(db, `users/${userId}/marked_websites`);
   onValue(markedWebsitesRef, (snapshot) => {
