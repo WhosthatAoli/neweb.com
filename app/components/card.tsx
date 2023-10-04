@@ -1,6 +1,8 @@
+'use client'
 import * as React from "react";
 import "../globals.css";
 import img from "@/app/lib/assets/logo.png";
+import { saveMarkedWebsite, retrieveMarkedWebsites } from '../api/firebaseApi/firebaseDatabase'
 
 interface CardProps {
   title: string;
@@ -17,6 +19,19 @@ const Card: React.FC<CardProps> = ({
   url,
   features,
 }) => {
+
+  const [markedWebsites, setMarkedWebsites] = React.useState({})
+
+  const handleMark = (websiteTitle) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userId = user.uid
+    saveMarkedWebsite(userId, websiteTitle).then(() => {
+      console.log('website marked!')
+    }).catch((err) => {
+      console.error(err)
+    })
+  }
+
   return (
     <div className="rounded-lg w-80 shadow-lg hover:shadow-xl hover:-translate-y-2 duration-500">
       <a href={url} target="_blank" rel="noopener noreferrer" className="w-80">
@@ -48,6 +63,7 @@ const Card: React.FC<CardProps> = ({
           </ul>
         </div>
       </a>
+      <div onClick={() => handleMark(title)}>Mark</div>
     </div>
   );
 };
