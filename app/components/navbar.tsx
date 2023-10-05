@@ -4,6 +4,7 @@ import { logo } from "../lib/assets";
 import { useContext } from "react";
 import { MyContext } from "./context";
 import { useRouter } from "next/navigation";
+import SearchBar from "./searchBar";
 
 interface NavbarProps {}
 
@@ -48,7 +49,7 @@ const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
           >
             AddNewWebInfo
           </div>
-          <div
+          {/* <div
             onClick={() => {
               router.push("/test");
             }}
@@ -56,7 +57,8 @@ const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
           >
             test
           </div>
-          <a href="#bottom">bottom</a>
+          <a href="#bottom">bottom</a> */}
+          <SearchBar />
         </div>
         {!isLogin ? (
           <div className="flex flex-row items-center gap-4 pr-6">

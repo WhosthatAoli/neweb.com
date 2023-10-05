@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 
 export default async function Search() {
   const searchParams = useSearchParams();
-  const search = searchParams.get("search");
+  const search = searchParams.get("search")?.toLowerCase();
 
   const websites = await getAllWebsiteData();
   console.log("params", search);
@@ -19,7 +19,7 @@ export default async function Search() {
       <div className="cardBar flex overflow-auto gap-4 pt-4 pb-4 ml-6 mr-4">
         {websites
           .filter((web) => {
-            return web.name.includes(search);
+            return web.name.toLowerCase().includes(search);
           })
           .map((filteredSite, index) => (
             <Card
