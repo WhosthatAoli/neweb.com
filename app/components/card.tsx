@@ -18,7 +18,6 @@ const Card: React.FC<CardProps> = ({
   url,
   features,
 }) => {
-
   return (
     <div className="rounded-lg w-80 shadow-lg hover:shadow-xl hover:-translate-y-2 duration-500">
       <a href={url} target="_blank" rel="noopener noreferrer" className="w-80">
@@ -33,8 +32,8 @@ const Card: React.FC<CardProps> = ({
           </div>
           <div className="text-gray-700 text-base">
             <p>
-              {content ? content : "Card Content"}
-              {/* {content ? content.substring(0, 70) + '...' : "Card Content"} */}
+              {/* {content ? content : "Card Content"} */}
+              {content ? content.substring(0, 70) + "..." : "Card Content"}
             </p>
           </div>
           <ul className="mt-4 text-xs flex gap-1.5">
@@ -51,7 +50,6 @@ const Card: React.FC<CardProps> = ({
         </div>
       </a>
       <MarkButton title={title} />
-      {/* <button onClick={() => handleMark(title)}>Mark</button> */}
     </div>
   );
 };

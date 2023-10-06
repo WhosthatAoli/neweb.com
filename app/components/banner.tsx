@@ -11,6 +11,8 @@ interface BannerProps {}
 const Banner: React.FunctionComponent<BannerProps> = (props) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
+  console.log(banners[currentIndex].img.default.src);
+
   React.useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % banners.length);
@@ -33,7 +35,7 @@ const Banner: React.FunctionComponent<BannerProps> = (props) => {
     <div
       style={{
         backgroundImage: `linear-gradient(rgba(175, 175, 175, 0.8), rgba(255, 255, 255)), 
-        url(${banners[currentIndex].img})`,
+        url(${banners[currentIndex].img.default.src})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
@@ -44,13 +46,13 @@ const Banner: React.FunctionComponent<BannerProps> = (props) => {
       <div className="flex flex-col gap-6">
         <Navbar />
         <div className="w-full bg-gray-400 p-8 bg-transparent flex flex-col justify-center gap-10">
-          <div className="flex justify-start items-center gap-10 text-white">
+          {/* <div className="flex justify-start items-center gap-10 text-white">
             {bannerCategories.map((item, index) => (
               <div key={index} className="font-bold">
                 {item}
               </div>
             ))}
-          </div>
+          </div> */}
           <div className="relative group">
             <button
               className="absolute top-40 -left-5 w-12 h-12 rounded-full bg-[#00000080] text-2xl text-white font-semibold z-10 opacity-0 group-hover:opacity-100 shadow-md transition duration-300 ease-in-out"
@@ -66,8 +68,8 @@ const Banner: React.FunctionComponent<BannerProps> = (props) => {
               >
                 <div className="relative z-0">
                   <img
-                    className="w-full h-96 rounded-2xl object-fill hover:ease-out"
-                    src={banners[currentIndex].img}
+                    className="w-full aspect-w-16 aspect-h-9 rounded-2xl object-fill hover:ease-out"
+                    src={banners[currentIndex].img.default.src}
                     alt={banners[currentIndex].name}
                   />
                   <div className="absolute bottom-1/4 left-16 text-white font-semibold">

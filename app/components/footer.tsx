@@ -12,7 +12,7 @@ const Footer: React.FunctionComponent<FooterProps> = (props) => {
           alt="logo"
           className="w-12 h-12 object-fill rounded-full"
         />
-        <p className="text-2xl font-bold pt-3">Neweb</p>
+        <p className="text-2xl font-bold pt-3">PocketX</p>
         <p className="pt-3">
           Where Tech, Trends, and Arts Collide! Stay ahead with the latest in
           technology, IT trends, and the vibrant world. Join us in exploring the

@@ -1,21 +1,11 @@
+const banner1 = require("../assets/banner1.png");
+
 const banners = [
   {
-    name: "Netflix",
-    img: "https://source.unsplash.com/LaZfUnbyAmA",
-    url: "https://www.netflix.com/",
-    description: "This is Netflix",
-  },
-  {
-    name: "Netflix",
-    img: "https://source.unsplash.com/U79ZP0P5qck",
-    url: "https://www.netflix.com/",
-    description: "This is Netflix",
-  },
-  {
-    name: "Netflix",
-    img: "https://source.unsplash.com/wkb5BM3vlWY",
-    url: "https://www.netflix.com/",
-    description: "This is Netflix",
+    name: "PocketX",
+    img: banner1,
+    url: "www.google.com",
+    description: "Utility Websites in your PocketX",
   },
 ];
 
