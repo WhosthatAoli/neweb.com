@@ -1,6 +1,7 @@
 import * as React from "react";
 import "../globals.css";
 import img from "@/app/lib/assets/logo.png";
+import MarkButton from "./markButton";
 
 interface CardProps {
   title: string;
@@ -17,6 +18,7 @@ const Card: React.FC<CardProps> = ({
   url,
   features,
 }) => {
+
   return (
     <div className="rounded-lg w-80 shadow-lg hover:shadow-xl hover:-translate-y-2 duration-500">
       <a href={url} target="_blank" rel="noopener noreferrer" className="w-80">
@@ -48,6 +50,8 @@ const Card: React.FC<CardProps> = ({
           </ul>
         </div>
       </a>
+      <MarkButton title={title} />
+      {/* <button onClick={() => handleMark(title)}>Mark</button> */}
     </div>
   );
 };
