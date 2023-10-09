@@ -48,7 +48,7 @@ const Card: React.FC<CardProps> = ({
             <MarkButton title={title} />
           </div>
           <div className="text-gray-700 text-base mb-4">
-            <p className="truncate">
+            <p className="truncate" title={content ? content : "Card Content"}>
               {content ? content : "Card Content"}
             </p>
           </div>
