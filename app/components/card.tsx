@@ -11,6 +11,20 @@ interface CardProps {
   features: string[];
 }
 
+const featureToColor = (feature: string) => {
+  const colors: {[key: string]: string} = {
+    "Daily Useful": "bg-blue-400",
+    "Developer Courses": "bg-red-400",
+    "Image Processing": "bg-green-400",
+    "DevTools": "bg-yellow-600",
+    "Online Streaming": "bg-yellow-300",
+    "DIY": "bg-indigo-400",
+    "AI": "bg-purple-400",
+    "Vedio & Music & Audio": "bg-pink-400",
+  };
+  return colors[feature] || "bg-gray-400";  // 默认颜色
+};
+
 const Card: React.FC<CardProps> = ({
   title,
   content,
@@ -19,29 +33,31 @@ const Card: React.FC<CardProps> = ({
   features,
 }) => {
   return (
-    <div className="rounded-lg w-80 shadow-lg hover:shadow-xl hover:-translate-y-2 duration-500">
-      <a href={url} target="_blank" rel="noopener noreferrer" className="w-80">
+    <div className="rounded-lg w-60 sm:w-72 md:w-80 lg:w-96 shadow-md hover:shadow-lg hover:-translate-y-2 transition-transform duration-500">
+      <a href={url} target="_blank" rel="noopener noreferrer" className="block">
         <img
-          className="rounded-lg object-cover w-80 h-60"
+          className="rounded-t-lg object-cover w-full h-48 sm:h-56 md:h-60 lg:h-64"
           src={image ? image : img.src}
           alt={title}
         />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">
-            {title ? title : "Card Title"}
+        <div className="px-4 sm:px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="font-bold text-lg sm:text-xl truncate">
+              {title ? title : "Card Title"}
+            </div>
+            <MarkButton title={title} />
           </div>
-          <div className="text-gray-700 text-base">
-            <p>
-              {/* {content ? content : "Card Content"} */}
-              {content ? content.substring(0, 70) + "..." : "Card Content"}
+          <div className="text-gray-700 text-sm mb-4">
+            <p className="truncate" title={content ? content : "Card Content"}>
+              {content ? content : "Card Content"}
             </p>
           </div>
-          <ul className="mt-4 text-xs flex gap-1.5">
+          <ul className="text-xs flex flex-wrap gap-1.5">
             {features &&
               features.map((feature, index) => (
                 <li
                   key={index}
-                  className="mb-1 text-white font-semibold bg-blue-400 px-4 py-2 rounded-lg"
+                  className={`mb-1 text-white font-semibold px-1 py-0.5 rounded-md ${featureToColor(feature)}`}
                 >
                   {feature}
                 </li>
@@ -49,7 +65,6 @@ const Card: React.FC<CardProps> = ({
           </ul>
         </div>
       </a>
-      <MarkButton title={title} />
     </div>
   );
 };

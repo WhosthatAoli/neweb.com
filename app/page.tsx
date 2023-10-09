@@ -12,7 +12,7 @@ export default async function Home() {
       {allFeatures.map((feature) => (
         <div key={feature} className="collection mt-12">
           <div className="text-2xl font-bold mt-2 ml-6 mb-2">{feature}</div>
-          <div className="cardBar flex overflow-auto gap-4 pt-4 pb-4 ml-6 mr-4">
+          <div className="cardBar flex overflow-x-auto whitespace-nowrap gap-4 pt-4 pb-4 ml-6 mr-4">
             {websites
               .filter((site) => site.feature?.split(",").includes(feature))
               .map((filteredSite, index) => (

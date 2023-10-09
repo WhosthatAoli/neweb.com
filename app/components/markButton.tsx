@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "../globals.css";
-import { saveMarkedWebsite, retrieveMarkedWebsites } from '../api/firebaseApi/firebaseDatabase'
+import { saveMarkedWebsite } from '../api/firebaseApi/firebaseDatabase'
+import markIcon from '@/public/asset/mark_icon.png'; // 导入图片
 
 interface MarkButtonProps {
     title: string;
@@ -9,7 +10,6 @@ interface MarkButtonProps {
 
 const MarkButton: React.FunctionComponent<MarkButtonProps> = ({title}) => {
   
-    const [markedWebsites, setMarkedWebsites] = useState([]);
     const [userId, setUserId] = useState('')
 
     useEffect(()=>{
@@ -24,11 +24,14 @@ const MarkButton: React.FunctionComponent<MarkButtonProps> = ({title}) => {
         console.error(err)
       })
     } 
-  return (
-    <div>
-      <button onClick={() => handleMark(title)}>Mark</button>
-    </div>
-  );
+
+    return (
+      <div>
+        <button onClick={() => handleMark(title)}>
+            <img src={markIcon.src} alt="Mark" className="h-6 w-6" /> {/* 使用图片 */}
+        </button>
+      </div>
+    );
 };
 
 export default MarkButton;
