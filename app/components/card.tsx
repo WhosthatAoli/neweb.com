@@ -33,7 +33,7 @@ const Card: React.FC<CardProps> = ({
   features,
 }) => {
   return (
-    <div className="rounded-lg h-full w-60 sm:w-72 md:w-80 lg:w-96 shadow-md hover:shadow-lg hover:-translate-y-2 transition-transform duration-500">
+    <div className="rounded-lg w-60 sm:w-72 md:w-80 lg:w-96 shadow-md hover:shadow-lg hover:-translate-y-2 transition-transform duration-500">
       <a href={url} target="_blank" rel="noopener noreferrer" className="block">
         <img
           className="rounded-t-lg object-cover w-full h-48 sm:h-56 md:h-60 lg:h-64"
@@ -47,7 +47,7 @@ const Card: React.FC<CardProps> = ({
             </div>
             <MarkButton title={title} />
           </div>
-          <div className="text-gray-700 text-base mb-4">
+          <div className="text-gray-700 text-sm mb-4">
             <p className="truncate" title={content ? content : "Card Content"}>
               {content ? content : "Card Content"}
             </p>
@@ -57,7 +57,7 @@ const Card: React.FC<CardProps> = ({
               features.map((feature, index) => (
                 <li
                   key={index}
-                  className={`mb-1 text-white font-semibold px-2 py-1 rounded-lg ${featureToColor(feature)}`}
+                  className={`mb-1 text-white font-semibold px-1 py-0.5 rounded-md ${featureToColor(feature)}`}
                 >
                   {feature}
                 </li>
