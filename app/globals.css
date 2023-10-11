@@ -7,3 +7,14 @@
     @apply box-border;
   }
 }
+
+.truncate-3-lines {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  white-space: normal;
+
+  /* Assuming each line is about 1.5em height */
+  height: 4.5em;
+}
