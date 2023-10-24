@@ -1,5 +1,4 @@
 import * as React from "react";
-import "../globals.css";
 import img from "@/app/lib/assets/logo.png";
 import MarkButton from "./markButton";
 
@@ -48,7 +47,7 @@ const Card: React.FC<CardProps> = ({
             <MarkButton title={title} />
           </div>
           <div className="text-gray-700 text-sm mb-4">
-            <p className="truncate" title={content ? content : "Card Content"}>
+            <p className="truncate-3-lines" title={content ? content : "Card Content"}>
               {content ? content : "Card Content"}
             </p>
           </div>
