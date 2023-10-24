@@ -15,7 +15,7 @@ export default async function Search() {
 
   return (
     <div>
-      <p>Search Results:</p>
+      <h1 className="text-3xl font-bold mb-4">Search Results:</h1>
       <div className="cardBar flex overflow-auto gap-4 pt-4 pb-4 ml-6 mr-4">
         {websites
           .filter((web) => {

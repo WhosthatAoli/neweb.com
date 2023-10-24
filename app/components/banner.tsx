@@ -10,6 +10,7 @@ interface BannerProps {}
 
 const Banner: React.FunctionComponent<BannerProps> = (props) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isFolded, setIsFolded] = React.useState(false);
 
   console.log(banners[currentIndex].img.default.src);
 
@@ -31,6 +32,11 @@ const Banner: React.FunctionComponent<BannerProps> = (props) => {
     );
   };
 
+  const handleFold = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    setIsFolded(!isFolded);
+  };
+
   return (
     <div
       style={{
@@ -45,22 +51,23 @@ const Banner: React.FunctionComponent<BannerProps> = (props) => {
     >
       <div className="flex flex-col gap-6">
         <Navbar />
-        <div className="w-full bg-gray-400 p-8 bg-transparent flex flex-col justify-center gap-10">
-          {/* <div className="flex justify-start items-center gap-10 text-white">
+        {!isFolded ? (
+          <div className="w-full bg-gray-400 p-8 bg-transparent flex flex-col justify-center gap-10">
+            {/* <div className="flex justify-start items-center gap-10 text-white">
             {bannerCategories.map((item, index) => (
               <div key={index} className="font-bold">
                 {item}
               </div>
             ))}
           </div> */}
-          <div className="relative group">
-            <button
-              className="absolute top-40 -left-5 w-12 h-12 rounded-full bg-[#00000080] text-2xl text-white font-semibold z-10 opacity-0 group-hover:opacity-100 shadow-md transition duration-300 ease-in-out"
-              onClick={handlePrevious}
-            >
-              &lt;
-            </button>
-            {
+            <div className="relative group">
+              <button
+                className="absolute top-40 -left-5 w-12 h-12 rounded-full bg-[#00000080] text-2xl text-white font-semibold z-10 opacity-0 group-hover:opacity-100 shadow-md transition duration-300 ease-in-out"
+                onClick={handlePrevious}
+              >
+                &lt;
+              </button>
+
               <a
                 href={banners[currentIndex].url}
                 target="_blank"
@@ -80,15 +87,29 @@ const Banner: React.FunctionComponent<BannerProps> = (props) => {
                   </div>
                 </div>
               </a>
-            }
-            <button
-              className="absolute top-40 -right-5 w-12 h-12 rounded-full bg-[#00000080] text-2xl text-white font-semibold z-10 opacity-0 group-hover:opacity-100 shadow-md transition duration-300 ease-in-out"
-              onClick={handleNext}
-            >
-              &gt;
-            </button>
+              <div
+                className="w-full h-6 bg-gray-400 text-white font-bold flex justify-center items-center cursor-pointer"
+                onClick={handleFold}
+              >
+                {isFolded ? "Show Banner" : "Hide Banner"}
+              </div>
+
+              <button
+                className="absolute top-40 -right-5 w-12 h-12 rounded-full bg-[#00000080] text-2xl text-white font-semibold z-10 opacity-0 group-hover:opacity-100 shadow-md transition duration-300 ease-in-out"
+                onClick={handleNext}
+              >
+                &gt;
+              </button>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div
+            className="w-full h-6 bg-gray-400 text-white font-bold flex justify-center items-center cursor-pointer"
+            onClick={handleFold}
+          >
+            {isFolded ? "Show Banner" : "Hide Banner"}
+          </div>
+        )}
       </div>
     </div>
   );
